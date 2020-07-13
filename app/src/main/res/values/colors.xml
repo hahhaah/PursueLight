@@ -10,4 +10,30 @@
     <color name="colorGrey">#BBBABA</color>
     <color name="colorDarkGrey">#717171</color>
     <color name="colorLightBlue">#8DA5CB</color>
+
+    <!--主色调-->
+    <color name="basecolor">#49B557</color>
+    <color name="basecolorShallow">#57df48</color>
+    <color name="baseColorDeep">#40c632</color>
+
+
+    <!--字体、背景-->
+    <color name="layout_bg">#f8f9fa</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="stateBar">#000000</color>
+    <color name="transparency">#00000000</color>
+    <color name="text_color_white">#FFFFFF</color>
+    <color name="text_color_black">#000000</color>
+    <color name="text_color_1">#333333</color>
+    <color name="text_color_2">#666666</color>
+    <color name="text_color_3">#999999</color>
+    <color name="text_color_4">#DDDDDD</color>
+    <color name="text_color_blue">#477be5</color>
+    <color name="text_color_red">#FF6D6D</color>
+    <color name="text_color_green">#6BC4A2</color>
+    <color name="text_color_yellow">#eeb60e</color>
+    <color name="gray">#DEDEDE</color>
+    <color name="divider_color">#ffe8e8e8</color>
+    <color name="transparent">#00000000</color>
 </resources>

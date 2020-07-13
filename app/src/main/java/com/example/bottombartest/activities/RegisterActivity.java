@@ -1,4 +1,4 @@
-package com.example.bottombartest;
+package com.example.bottombartest.activities;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bottombartest.R;
 import com.example.bottombartest.utils.LogUtils;
 
 /*

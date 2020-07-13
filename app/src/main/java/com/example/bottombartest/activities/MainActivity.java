@@ -1,7 +1,8 @@
-package com.example.bottombartest;
+package com.example.bottombartest.activities;
 
 import android.os.Bundle;
 
+import com.example.bottombartest.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class TestActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,8 @@ public class TestActivity extends AppCompatActivity {
             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
             .build();
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-    //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+    //此处若无actionbar 会crash
+    // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     NavigationUI.setupWithNavController(navView, navController);
   }
 

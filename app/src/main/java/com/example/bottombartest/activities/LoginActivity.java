@@ -1,4 +1,4 @@
-package com.example.bottombartest;
+package com.example.bottombartest.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,9 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.bottombartest.interfaces.ILogin;
+import com.example.bottombartest.R;
 import com.example.bottombartest.utils.LogUtils;
 
 public class LoginActivity extends AppCompatActivity {
@@ -109,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = mEmailEdt.getText().toString();
         String pwd = mPwdEdt.getText().toString();
         if(email.equals("123@qq.com") && pwd.equals("123")) {
-          Intent intent = new Intent(LoginActivity.this, TestActivity.class);
+          Intent intent = new Intent(LoginActivity.this, MainActivity.class);
           startActivity(intent);
           LoginActivity.this.finish();
         }
