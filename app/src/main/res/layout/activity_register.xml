@@ -7,11 +7,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/colorPurple"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
 
     <TextView
         android:layout_marginLeft="40dp"
-        android:text="@string/login_hint"
+        android:text="@string/user_register"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="50dp"
         android:textStyle="bold"
@@ -19,8 +19,8 @@
         android:textColor="@color/colorWhite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    
-    
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:id="@+id/email_input_view"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/email_edit"
+            android:id="@+id/reg_email_edit"
             android:background="@null"
             android:inputType="textEmailAddress"
             android:textColorHint = "@color/colorGrey"
@@ -70,48 +70,75 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/pwd_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="6dp"
+            android:id="@+id/reg_pwd_edit"
             android:background="@null"
+            android:inputType="textPassword"
+            android:layout_marginLeft="6dp"
+            android:textColorHint = "@color/colorGrey"
             android:hint="@string/input_pwd"
             android:textColor="@color/colorDarkGrey"
-            android:inputType="textPassword"
-            android:textColorHint="@color/colorGrey" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_marginVertical="16dp"
+        android:id="@+id/confirm_input_view"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_input"
         android:layout_marginHorizontal="40dp"
-        android:layout_height="wrap_content">
+        android:layout_marginVertical="20dp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:src="@drawable/password"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/confirm_edit"
+            android:background="@null"
+            android:inputType="textPassword"
+            android:layout_marginLeft="6dp"
+            android:textColorHint = "@color/colorGrey"
+            android:hint="@string/confirm_pwd"
+            android:textColor="@color/colorDarkGrey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="40dp"
+        android:layout_marginVertical="14dp">
+
+        <RadioButton
+            android:id="@+id/radio_btn"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/go_register_tv"
-            android:textSize="15sp"
+            android:layout_marginLeft="10dp"
             android:textColor="@color/colorWhite"
+            android:layout_marginVertical="14dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/go_register"/>
-
-        <TextView
-            android:id="@+id/find_pwd"
-            android:textSize="15sp"
-            android:layout_marginLeft="82dp"
-            android:textColor="@color/colorWhite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/find_pwd"/>
+            android:text="@string/read_protocol"/>
     </LinearLayout>
 
     <Button
-        android:id="@+id/login_btn"
+        android:id="@+id/register_btn"
         android:layout_gravity="center"
-        android:text="@string/login"
+        android:text="@string/register"
         android:textColor="@color/colorWhite"
         android:textStyle="bold"
         android:background="@drawable/selector_btn"
@@ -119,13 +146,6 @@
         android:layout_height="40dp"
         android:layout_marginHorizontal="40dp"
         android:layout_marginVertical="10dp"
-    />
+        />
 
-    <TextView
-        android:textColor="@color/colorGrey"
-        android:layout_gravity="bottom|center"
-        android:text="@string/agree_protocol"
-        android:layout_marginTop="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 </LinearLayout>

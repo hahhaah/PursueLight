@@ -4,4 +4,20 @@
     <string name="title_index">主页</string>
     <string name="title_sport">运动</string>
     <string name="title_mine">我的</string>
+
+
+    <string name="login_hint">用户登录</string>
+    <string name="login">登录 Login</string>
+    <string name="user_register">用户注册</string>
+    <string name="register">立即注册</string>
+
+    <string name="input_pwd">请输入密码</string>
+    <string name="confirm_pwd">再次输入密码</string>
+    <string name="input_email">请输入邮箱账号</string>
+    <string name="go_register">没有账号？现在注册</string>
+    <string name="find_pwd">找回密码</string>
+    <string name="agree_protocol">登录即代表同意用户协议和隐私政策</string>
+
+    <string name="read_protocol">我已阅读并同意用户协议和隐私政策</string>
+
 </resources>
