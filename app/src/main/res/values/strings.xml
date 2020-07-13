@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="title_index">主页</string>
+    <string name="title_sport">运动</string>
+    <string name="title_mine">我的</string>
+</resources>
