@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
   private EditText mEmailEdt;
   private EditText mPwdEdt;
   private EditText mConfirmEdt;
+  private Button mSendBtn;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,10 @@ public class RegisterActivity extends AppCompatActivity {
     mEmailEdt = findViewById(R.id.reg_email_edit);
     mPwdEdt = findViewById(R.id.reg_pwd_edit);
     mConfirmEdt = findViewById(R.id.confirm_edit);
+    mSendBtn = findViewById(R.id.reg_send_code);
     mRegBtn = findViewById(R.id.register_btn);
     mRegBtn.setEnabled(false);
+    mSendBtn.setEnabled(false);
 
   }
 
@@ -54,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
     boolean hasPassword = false;
     if (!TextUtils.isEmpty(mEmailEdt.getText())) {
       hasEmail = true;
+      mSendBtn.setEnabled(true);
     }
 
     if (!TextUtils.isEmpty(mPwdEdt.getText()) && !TextUtils.isEmpty(mConfirmEdt.getText())) {

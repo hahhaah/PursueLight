@@ -31,7 +31,7 @@ public class CountDownProgressView extends AppCompatTextView {
   private int circFrameWidth = 4;
 
   //圆的半径
-  private int circRadius;
+  private int radius;
 
   // 进度条的颜色
   private int progressColor;
@@ -51,7 +51,7 @@ public class CountDownProgressView extends AppCompatTextView {
   private String mText = "跳过";
 
   // 进度倒计时时间
-  private long timeMillis = 3000;
+  private long timeMillis = 1400;
 
   // 进度条通知
   private OnProgressListener mProgressListener;
@@ -115,7 +115,7 @@ public class CountDownProgressView extends AppCompatTextView {
   }
 
   public void setTimeMillis(int i) {
-    this.timeMillis = timeMillis;
+    this.timeMillis = i;
     invalidate();
   }
 
@@ -180,7 +180,7 @@ public class CountDownProgressView extends AppCompatTextView {
     } else {
       width = height;
     }
-    circRadius = width / 2;
+    radius = width / 2;
     setMeasuredDimension(width, height);
   }
 
@@ -204,7 +204,7 @@ public class CountDownProgressView extends AppCompatTextView {
     mPaint.setAntiAlias(true); //设置抗锯齿
     mPaint.setStyle(Paint.Style.FILL); //实心填充style
     mPaint.setColor(circSolidColor);
-    canvas.drawCircle(mBounds.centerX(), mBounds.centerY(), circRadius, mPaint);
+    canvas.drawCircle(mBounds.centerX(), mBounds.centerY(), radius, mPaint);
 
 
     // 画外边框(空心圆,即圆边框)
@@ -212,7 +212,7 @@ public class CountDownProgressView extends AppCompatTextView {
     mPaint.setStyle(Paint.Style.STROKE);//空心style
     mPaint.setStrokeWidth(circFrameWidth);//设置空心线宽度
     mPaint.setColor(circFrameColor);
-    canvas.drawCircle(mBounds.centerX(), mBounds.centerY(), circRadius - circFrameWidth, mPaint);
+    canvas.drawCircle(mBounds.centerX(), mBounds.centerY(), radius - circFrameWidth, mPaint);
 
     // 画文字
     Paint text_paint = getPaint(); //注意：如果是继承的view，这里是没有这个getPaint()方法的。大家可以看到它是Textview包下的方法
@@ -298,7 +298,7 @@ public class CountDownProgressView extends AppCompatTextView {
       case MotionEvent.ACTION_DOWN:
         int x = (int) event.getX();
         int y = (int) event.getY();
-        if (Math.abs(x - (mBounds.centerX())) <= (circRadius) * 2 && Math.abs(y - (mBounds.centerY())) <= (circRadius) * 2) {
+        if (Math.abs(x - (mBounds.centerX())) <= (radius) * 2 && Math.abs(y - (mBounds.centerY())) <= (radius) * 2) {
         }
         break;
       default:

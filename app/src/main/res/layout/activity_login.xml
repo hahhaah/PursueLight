@@ -83,7 +83,7 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_marginVertical="16dp"
@@ -93,20 +93,23 @@
         <TextView
             android:id="@+id/go_register_tv"
             android:textSize="15sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:textColor="@color/colorWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/go_register"/>
+            android:text="@string/register"/>
 
         <TextView
             android:id="@+id/find_pwd"
             android:textSize="15sp"
-            android:layout_marginLeft="82dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:textColor="@color/colorWhite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/find_pwd"/>
-    </LinearLayout>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/login_btn"

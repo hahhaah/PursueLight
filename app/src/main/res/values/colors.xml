@@ -16,8 +16,9 @@
     <color name="basecolorShallow">#57df48</color>
     <color name="baseColorDeep">#40c632</color>
 
-
+    <color name="basicGreen">#1BAC78</color>
     <!--字体、背景-->
+    <color name="tabBack">#F0EFEF</color>
     <color name="layout_bg">#f8f9fa</color>
     <color name="white">#FFFFFF</color>
     <color name="red">#FF0000</color>

@@ -4,12 +4,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.bottombartest.MyApplication;
 import com.example.bottombartest.R;
 import com.example.bottombartest.utils.permission.PermissionHelper;
 import com.example.bottombartest.utils.permission.PermissionListener;
@@ -24,14 +26,6 @@ import com.gyf.immersionbar.ImmersionBar;
  */
 public class SplashActivity extends AppCompatActivity {
 
-  /**
-   * 上次点击返回键的时间
-   */
-  private long lastBackPressed;
-  /**
-   * 上次点击返回键的时间
-   */
-  private static final int QUIT_INTERVAL = 3000;
 
   private ImageView mStartImg;
   private CountDownProgressView mProgressView;
@@ -52,10 +46,13 @@ public class SplashActivity extends AppCompatActivity {
     mStartImg = findViewById(R.id.im_url);
     mStartImg.setImageResource(R.mipmap.cover);
     mProgressView = findViewById(R.id.countdownProgressView);
+
+    mProgressView.setVisibility(View.INVISIBLE);
   }
 
   private void initData() {
-    mProgressView.setTimeMillis(3000);
+    mStartImg.setImageResource(R.mipmap.logo);
+    mProgressView.setTimeMillis(1200);
     mProgressView.setProgressType(CountDownProgressView.ProgressType.COUNT_BACK);
     mProgressView.start();
   }
@@ -67,6 +64,7 @@ public class SplashActivity extends AppCompatActivity {
           Manifest.permission.ACCESS_COARSE_LOCATION};
 
   private void initEvent() {
+
     mProgressView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -82,6 +80,27 @@ public class SplashActivity extends AppCompatActivity {
           });
         } else {
           startActivity();
+        }
+      }
+    });
+
+
+    mProgressView.setProgressListener(new CountDownProgressView.OnProgressListener() {
+      @Override
+      public void onProgress(int progress) {
+        if(progress == 0){
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // 获取权限
+            PermissionHelper.requestPermissions(SplashActivity.this, PERMISSIONS_STORAGE,
+                    getResources().getString(R.string.app_name) + "需要获取存储、位置权限", new PermissionListener() {
+                      @Override
+                      public void onPassed() {
+                        startActivity();
+                      }
+                    });
+          } else {
+            startActivity();
+          }
         }
       }
     });
@@ -101,5 +120,8 @@ public class SplashActivity extends AppCompatActivity {
   protected void initImmersionBar() {
     //在BaseActivity里初始化
     ImmersionBar.with(this).init();
+    if (ImmersionBar.hasNavigationBar(this)) {
+      ImmersionBar.with(this).transparentNavigationBar().init();
+    }
   }
 }

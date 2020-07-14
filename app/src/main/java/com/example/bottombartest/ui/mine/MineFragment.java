@@ -15,22 +15,12 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.bottombartest.R;
 
 public class MineFragment extends Fragment {
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-  private MineViewModel mMineViewModel;
-  private TextView mTextView;
-
-  public View onCreateView(@NonNull LayoutInflater inflater,
-                           ViewGroup container, Bundle savedInstanceState) {
-    mMineViewModel =
-            ViewModelProviders.of(this).get(MineViewModel.class);
-    View root = inflater.inflate(R.layout.fragment_mine, container, false);
-    mTextView = root.findViewById(R.id.text_notifications);
-    mMineViewModel.getText().observe(this, new Observer<String>() {
-      @Override
-      public void onChanged(@Nullable String s) {
-        mTextView.setText(s);
-      }
-    });
-    return root;
+    super.onCreateView(inflater, container, savedInstanceState);
+    View rootView = inflater.inflate(R.layout.fragment_mine,container,false);
+    return rootView;
   }
 }

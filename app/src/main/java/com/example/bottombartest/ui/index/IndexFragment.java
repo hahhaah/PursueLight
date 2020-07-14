@@ -1,4 +1,4 @@
-package com.example.bottombartest.ui.sport;
+package com.example.bottombartest.ui.index;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,13 +14,13 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.bottombartest.R;
 
-public class SportFragment extends Fragment {
+public class IndexFragment extends Fragment {
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
-    View rootView = inflater.inflate(R.layout.fragment_sport,container,false);
+    View rootView = inflater.inflate(R.layout.fragment_index,container,false);
     return rootView;
   }
 }
