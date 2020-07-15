@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -120,6 +121,15 @@ public class RegisterActivity extends AppCompatActivity {
       @Override
       public void afterTextChanged(Editable editable) {
         updateBtnStatus();
+      }
+    });
+
+    mSendBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Toast.makeText(RegisterActivity.this,"验证码已发送，请注意查收!",Toast.LENGTH_SHORT).show();
+        //todo:样式改为 xx秒后重新获取
+          mSendBtn.setEnabled(false);
       }
     });
 

@@ -15,4 +15,13 @@
         <attr name="ProgressText_color" format="color" />
 
     </declare-styleable>
+
+    <declare-styleable name="LooperView">
+
+        <!-- 每个图片展示时长-->
+        <attr name="switchTime" format="integer" />
+        <!-- 是否有图片描述 -->
+        <attr name="hasTitle" format="boolean" />
+
+    </declare-styleable>
 </resources>

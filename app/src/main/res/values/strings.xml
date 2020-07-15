@@ -21,4 +21,8 @@
 
     <string name="read_protocol">我已阅读并同意用户协议和隐私政策</string>
 
+
+    <string name="today_status">今日情况</string>
+    <string name="sport_data">运动数据</string>
+    <string name="health_data">健康数据</string>
 </resources>
