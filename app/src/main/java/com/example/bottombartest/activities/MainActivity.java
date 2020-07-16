@@ -16,6 +16,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+/*
+ * author：xuziwei
+ * description：主界面
+ * God bless my code!!
+ */
+
 public class MainActivity extends AppCompatActivity {
 
   private IndexFragment mIndexFragment = new IndexFragment();

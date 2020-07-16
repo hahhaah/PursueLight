@@ -16,6 +16,11 @@ import android.widget.TextView;
 import com.example.bottombartest.R;
 import com.example.bottombartest.utils.LogUtils;
 
+/*
+ * author：xuziwei
+ * description：登陆界面
+ * God bless my code!!
+ */
 public class LoginActivity extends AppCompatActivity {
 
   private EditText mEmailEdt;
@@ -58,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
       }
     });
 
-    mEmailEdt.addTextChangedListener(new TextWatcher() {
+    TextWatcher watcher = new TextWatcher() {
       @Override
       public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -73,27 +78,23 @@ public class LoginActivity extends AppCompatActivity {
       public void afterTextChanged(Editable editable) {
         updateBtnStatus();
       }
-    });
+    };
 
-    mPwdEdt.addTextChangedListener(new TextWatcher() {
-      @Override
-      public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    mEmailEdt.addTextChangedListener(watcher);
 
-      }
-
-      @Override
-      public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-      }
-
-      @Override
-      public void afterTextChanged(Editable editable) {
-        updateBtnStatus();
-      }
-    });
+    mPwdEdt.addTextChangedListener(watcher);
 
     //找回密码
     mFindPwdTv.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent = new Intent(LoginActivity.this,FindPwdActivity.class);
+        startActivity(intent);
+      }
+    });
+
+    //立即注册
+    mRegisterTv.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
@@ -119,21 +120,16 @@ public class LoginActivity extends AppCompatActivity {
   }
 
   private void updateBtnStatus(){
-    boolean hasUsername = false;
+    boolean hasInput = false;
     boolean hasPassword = false;
-    if (!TextUtils.isEmpty(mEmailEdt.getText())) {
-      hasUsername = true;
+    if (!TextUtils.isEmpty(mEmailEdt.getText()) && !TextUtils.isEmpty(mPwdEdt.getText())) {
+      hasInput = true;
     }
 
-    if (!TextUtils.isEmpty(mPwdEdt.getText())) {
-      hasPassword = true;
-    }
-    if (hasUsername && hasPassword) {
+    if (hasInput) {
       mLoginBtn.setEnabled(true);
     } else {
       mLoginBtn.setEnabled(false);
     }
   }
-
-
 }

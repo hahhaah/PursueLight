@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_marginLeft="40dp"
+        android:text="@string/modify_pwd"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="50dp"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="@color/colorWhite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_input"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="20dp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:src="@drawable/password"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/input_new_pwd"
+            android:background="@null"
+            android:inputType="textPassword"
+            android:layout_marginLeft="6dp"
+            android:textColorHint = "@color/colorGrey"
+            android:hint="@string/input_new_pwd"
+            android:textColor="@color/colorDarkGrey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_input"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="15dp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:src="@drawable/password"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/mod_confirm_edit"
+            android:background="@null"
+            android:inputType="textPassword"
+            android:layout_marginLeft="6dp"
+            android:textColorHint = "@color/colorGrey"
+            android:hint="@string/confirm_pwd"
+            android:textColor="@color/colorDarkGrey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/mod_sure_btn"
+        android:layout_gravity="center"
+        android:text="@string/sure"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:background="@drawable/selector_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="25dp"
+        />
+</LinearLayout>

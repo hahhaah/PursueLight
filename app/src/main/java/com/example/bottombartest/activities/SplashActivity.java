@@ -4,14 +4,12 @@ import android.Manifest;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.bottombartest.MyApplication;
 import com.example.bottombartest.R;
 import com.example.bottombartest.utils.permission.PermissionHelper;
 import com.example.bottombartest.utils.permission.PermissionListener;
@@ -34,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.layout_splash);
+    setContentView(R.layout.activity_splash);
     initView();
 
     initData();

@@ -53,7 +53,8 @@
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.MainActivity"></activity>
         <activity android:name=".activities.RegisterActivity"></activity>
-
+        <activity android:name=".activities.FindPwdActivity"></activity>
+        <activity android:name=".activities.ModifyPwdActivity"></activity>
     </application>
 
 </manifest>
