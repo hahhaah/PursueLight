@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import io.realm.Realm;
+
 /*
  * author：xuziwei
  * date：2020-07-13 18:00
@@ -20,6 +22,7 @@ public class MyApplication extends Application {
     super.onCreate();
     sContext = getBaseContext();
     sHandler = new Handler();
+    Realm.init(sContext);
   }
 
   public static Context getAppContext(){

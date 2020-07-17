@@ -25,7 +25,7 @@ public class ModifyPwdActivity extends AppCompatActivity {
 
   private static final String TAG = "ModifyPwdActivity";
   private EditText mNewPwdEdt;
-  private EditText mConfrimEdt;
+  private EditText mConfirmEdt;
   private Button mSureBtn;
 
   @Override
@@ -40,7 +40,7 @@ public class ModifyPwdActivity extends AppCompatActivity {
 
   private void initView() {
     mNewPwdEdt = findViewById(R.id.input_new_pwd);
-    mConfrimEdt = findViewById(R.id.mod_confirm_edit);
+    mConfirmEdt = findViewById(R.id.mod_confirm_edit);
     mSureBtn = findViewById(R.id.mod_sure_btn);
     mSureBtn.setEnabled(false);
   }
@@ -64,14 +64,17 @@ public class ModifyPwdActivity extends AppCompatActivity {
       }
     };
     mNewPwdEdt.addTextChangedListener(watcher);
-    mConfrimEdt.addTextChangedListener(watcher);
+    mConfirmEdt.addTextChangedListener(watcher);
 
     //todo:修改密码
     mSureBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         String newPwd = mNewPwdEdt.getText().toString();
-        String confirm = mConfrimEdt.getText().toString();
+        String confirm = mConfirmEdt.getText().toString();
+        if(!newPwd.equals(confirm)){
+          Toast.makeText(ModifyPwdActivity.this,"两次密码输入不一致！",Toast.LENGTH_SHORT).show();
+        }
         LogUtils.d(TAG,"newPwd-->"+newPwd+",confirm--->"+confirm);
       }
     });
@@ -79,15 +82,12 @@ public class ModifyPwdActivity extends AppCompatActivity {
 
   private void updateBtnStatus() {
     boolean hasInput = false;
-    if (!TextUtils.isEmpty(mNewPwdEdt.getText()) && !TextUtils.isEmpty(mConfrimEdt.getText())) {
+    if (!TextUtils.isEmpty(mNewPwdEdt.getText()) && !TextUtils.isEmpty(mConfirmEdt.getText())) {
       hasInput = true;
     }
 
     String newPwd = mNewPwdEdt.getText().toString();
-    String confirm = mConfrimEdt.getText().toString();
-    if(!newPwd.equals(confirm)){
-      Toast.makeText(ModifyPwdActivity.this,"两次密码输入不一致！",Toast.LENGTH_SHORT).show();
-    }
+    String confirm = mConfirmEdt.getText().toString();
 
     if (hasInput) {
       mSureBtn.setEnabled(true);

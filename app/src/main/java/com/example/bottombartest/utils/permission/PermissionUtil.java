@@ -23,7 +23,6 @@ import java.util.List;
  */
 public final class PermissionUtil {
 
-
   private static final SimpleArrayMap<String, Integer> MIN_SDK_PERMISSIONS;
 
   static {

@@ -3,7 +3,7 @@
     xmlns:xzw="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@color/colorGrey"
     android:layout_height="match_parent">
 
     <TextView
@@ -13,13 +13,14 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="20sp"
-        />
+        android:gravity="center_horizontal" />
 
     <com.example.bottombartest.view.LooperView
         android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:paddingBottom="15dp"
         android:id="@+id/looper_view"
         xzw:switchTime="4000"
         xzw:hasTitle="true"
-        android:layout_height="220dp"
         />
 </LinearLayout>

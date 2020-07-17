@@ -13,8 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.example.bottombartest.R;
 import com.example.bottombartest.utils.LogUtils;
+import com.example.bottombartest.utils.MyConstants;
 
 /*
  * author：xuziwei
@@ -109,14 +111,21 @@ public class LoginActivity extends AppCompatActivity {
         String email = mEmailEdt.getText().toString();
         String pwd = mPwdEdt.getText().toString();
         if(email.equals("123@qq.com") && pwd.equals("123")) {
-          Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-          startActivity(intent);
-          LoginActivity.this.finish();
+          loginSuccess(email, pwd);
         }
         LogUtils.d(TAG,"email-->"+email+", pwd-->"+pwd);
       }
     });
 
+  }
+
+  private void loginSuccess(String email, String pwd) {
+    SPUtils.getInstance().put(MyConstants.IS_LOGIN, true);
+    SPUtils.getInstance().put(MyConstants.USER_NAME, email);
+    SPUtils.getInstance().put(MyConstants.PASSWORD, pwd);
+    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+    startActivity(intent);
+    LoginActivity.this.finish();
   }
 
   private void updateBtnStatus(){

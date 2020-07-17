@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.example.bottombartest.R;
+import com.example.bottombartest.utils.MyConstants;
 import com.example.bottombartest.utils.permission.PermissionHelper;
 import com.example.bottombartest.utils.permission.PermissionListener;
 import com.example.bottombartest.view.CountDownProgressView;
@@ -50,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
 
   private void initData() {
     mStartImg.setImageResource(R.mipmap.logo);
-    mProgressView.setTimeMillis(1200);
+    mProgressView.setTimeMillis(1000);
     mProgressView.setProgressType(CountDownProgressView.ProgressType.COUNT_BACK);
     mProgressView.start();
   }
@@ -105,8 +107,13 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   public void startActivity() {
-    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-    finish();
+    if (SPUtils.getInstance().getBoolean(MyConstants.IS_LOGIN)) {
+      startActivity(new Intent(SplashActivity.this, MainActivity.class));
+      finish();
+    } else {
+      startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+      finish();
+    }
     mProgressView.stop();
   }
 

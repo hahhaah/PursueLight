@@ -29,4 +29,9 @@
     <string name="today_status">今日情况</string>
     <string name="sport_data">运动数据</string>
     <string name="health_data">健康数据</string>
+    
+    <string name="my_target">我的目标</string>
+    <string name="my_record">我的记录</string>
+    <string name="modify_info">修改信息</string>
+    <string name="logout">退出登录</string>
 </resources>

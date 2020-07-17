@@ -55,6 +55,9 @@
         <activity android:name=".activities.RegisterActivity"></activity>
         <activity android:name=".activities.FindPwdActivity"></activity>
         <activity android:name=".activities.ModifyPwdActivity"></activity>
+        <activity android:name=".activities.TargetActivity"></activity>
+        <activity android:name=".activities.RecordActivity"></activity>
+        <activity android:name=".activities.ModifyActivity"></activity>
     </application>
 
 </manifest>

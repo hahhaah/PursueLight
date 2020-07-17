@@ -31,4 +31,8 @@
     <dimen name="textsize_6">16sp</dimen>
     <dimen name="textsize_7">17sp</dimen>
     <dimen name="textsize_8">18sp</dimen>
+    <dimen name="textsize_big">21sp</dimen>
+
+    <!-- 图标大小-->
+    <dimen name="icon_size">30dp</dimen>
 </resources>

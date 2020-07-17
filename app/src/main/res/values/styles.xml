@@ -19,4 +19,9 @@
         <!--<item name="android:windowIsTranslucent">true</item>-->
     </style>
 
+    <style name="popupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+    </style>
+
 </resources>

@@ -2,13 +2,12 @@ package com.example.bottombartest.activities;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.example.bottombartest.R;
-import com.example.bottombartest.ui.index.IndexFragment;
-import com.example.bottombartest.ui.mine.MineFragment;
-import com.example.bottombartest.ui.sport.SportFragment;
+import com.example.bottombartest.fragments.index.IndexFragment;
+import com.example.bottombartest.fragments.mine.MineFragment;
+import com.example.bottombartest.fragments.sport.SportFragment;
 import com.example.bottombartest.utils.LogUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     initView();
 
     initEvent();
-
   }
 
   private void initView() {
@@ -58,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void initEvent() {
-
-
     mIndexTab.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -93,6 +89,12 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
+  //todo：判断应该显示哪一个fragment
+  @Override
+  protected void onResume() {
+    super.onResume();
+  }
+
   private void showFragment(Fragment fragment){
     if(fragment != mCurFragment){
       FragmentTransaction transaction = mFragmentManager.beginTransaction();
@@ -103,6 +105,22 @@ public class MainActivity extends AppCompatActivity {
         transaction.add(R.id.fragment_container,fragment).commit();
       }
       mCurFragment = fragment;
+    }
+  }
+
+  private void showFragment(int index){
+    switch (index) {
+      case 0:
+        showFragment(mIndexFragment);
+        break;
+      case 1:
+        showFragment(mSportFragment);
+        break;
+      case 2:
+        showFragment(mMineFragment);
+        break;
+      default:
+        showFragment(mCurFragment);
     }
   }
 }

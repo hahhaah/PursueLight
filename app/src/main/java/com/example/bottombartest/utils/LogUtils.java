@@ -11,13 +11,13 @@ import android.util.Log;
 public class LogUtils {
 
   public static void d(String tag,String msg) {
-    if (Contsants.DEBUG) {
+    if (MyConstants.DEBUG) {
       Log.d(tag, msg);
     }
   }
 
   public static void i(String tag,String msg) {
-    if (Contsants.DEBUG) {
+    if (MyConstants.DEBUG) {
       Log.i(tag, msg);
     }
   }

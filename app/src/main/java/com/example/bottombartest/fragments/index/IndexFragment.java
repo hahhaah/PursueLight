@@ -1,27 +1,36 @@
-package com.example.bottombartest.ui.index;
+package com.example.bottombartest.fragments.index;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.bottombartest.R;
 import com.example.bottombartest.entity.LooperItem;
+import com.example.bottombartest.entity.Weather;
+import com.example.bottombartest.interfaces.WeatherRequest;
 import com.example.bottombartest.view.LooperView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static com.example.bottombartest.utils.MyConstants.WEATHER_URL;
+
 public class IndexFragment extends Fragment {
 
+  private static final String TAG = "IndexFragment";
   private List<LooperItem> mData;
   private LooperView mLooperView;
   private View mRootView;
@@ -31,9 +40,15 @@ public class IndexFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
     mRootView = inflater.inflate(R.layout.fragment_index,container,false);
+    return mRootView;
+  }
+
+  //在onCreateView之后执行
+  @Override
+  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    super.onActivityCreated(savedInstanceState);
     initTestData();
     initView();
-    return mRootView;
   }
 
   private void initTestData() {
@@ -69,4 +84,31 @@ public class IndexFragment extends Fragment {
       }
     });
   }
+
+  //获取天气数据
+  private void getWeatherData(){
+    List<Weather> list = new ArrayList<>();
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(WEATHER_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+
+    final WeatherRequest request = retrofit.create(WeatherRequest.class);
+    Call<Weather> call = request.getWeatherInfo();
+    call.enqueue(new Callback<Weather>() {
+      @Override
+      public void onResponse(Call<Weather> call, Response<Weather> response) {
+        Weather weather = response.body();
+        //todo:更新天气预报信息显示
+        Log.d(TAG, "onResponse: "+weather.getDaily().size());
+      }
+
+      @Override
+      public void onFailure(Call<Weather> call, Throwable t) {
+
+      }
+    });
+
+  }
+
 }

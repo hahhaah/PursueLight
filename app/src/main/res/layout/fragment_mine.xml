@@ -1,15 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/colorWhite"
     android:layout_height="match_parent">
 
+    <com.example.bottombartest.view.CircleImgView
+        android:id="@+id/iv_logo"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:src="@mipmap/ic_launcher" />
+
     <TextView
-        android:text="我的～～界面"
-        android:textColor="@color/stateBar"
+        android:id="@+id/user_info"
+        android:layout_height="60dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        />
+        android:textColor="@color/stateBar"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/margin_edge_20"/>
+
+    <LinearLayout
+        android:id="@+id/target_view"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="30dp"
+        android:gravity="center"
+        android:background="@drawable/bg_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:src="@drawable/target"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <TextView
+            android:textColor="@color/colorDarkGrey"
+            android:text="@string/my_target"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_big"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/record_view"
+        android:layout_marginTop="@dimen/margin_edge_20"
+        android:orientation="horizontal"
+        android:paddingHorizontal="30dp"
+        android:gravity="center"
+        android:background="@drawable/bg_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:src="@drawable/record"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <TextView
+            android:textColor="@color/colorDarkGrey"
+            android:text="@string/my_record"
+            android:layout_marginLeft="@dimen/item_edge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_big"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/modify_view"
+        android:layout_marginTop="@dimen/margin_edge_20"
+        android:orientation="horizontal"
+        android:paddingHorizontal="30dp"
+        android:gravity="center"
+        android:background="@drawable/bg_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:src="@drawable/modify"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <TextView
+            android:textColor="@color/colorDarkGrey"
+            android:text="@string/modify_info"
+            android:layout_marginLeft="@dimen/item_edge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_big"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/logout_view"
+        android:layout_marginTop="@dimen/margin_edge_20"
+        android:orientation="horizontal"
+        android:paddingHorizontal="30dp"
+        android:gravity="center"
+        android:background="@drawable/bg_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:src="@drawable/logout"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"/>
+
+        <TextView
+            android:textColor="@color/colorDarkGrey"
+            android:text="@string/logout"
+            android:layout_marginLeft="@dimen/item_edge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_big"/>
+    </LinearLayout>
 </LinearLayout>

@@ -126,6 +126,7 @@ public class RegisterActivity extends AppCompatActivity {
       }
     });
 
+    //todo：向后端发起请求查询账号是否存在，
     mRegBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -136,6 +137,8 @@ public class RegisterActivity extends AppCompatActivity {
           Toast.makeText(RegisterActivity.this,"两次密码输入不一致！",Toast.LENGTH_SHORT).show();
         }
         LogUtils.d(TAG,"email-->"+email+", pwd-->"+pwd+", confirm-->"+confirm);
+
+
       }
     });
 
