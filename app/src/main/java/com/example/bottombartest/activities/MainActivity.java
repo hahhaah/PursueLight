@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+
+
   private void showFragment(int index){
     switch (index) {
       case 0:

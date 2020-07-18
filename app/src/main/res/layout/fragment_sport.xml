@@ -1,16 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/layout_bg"
     android:layout_width="match_parent"
-    android:background="@color/colorWhite"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="355dp"
+        android:background="@drawable/sport_bg">
+
+        <RelativeLayout
+            android:id="@+id/sport_back"
+            android:layout_height="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_width="wrap_content"
+            android:onClick="back">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/item_edge"
+                android:layout_marginRight="@dimen/item_edge"
+                android:background="@mipmap/icon_back_white" />
+        </RelativeLayout>
 
     <TextView
-        android:text="运动界面"
-        android:textColor="@color/stateBar"
+        android:id="@+id/tv_sport_mile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLength="6"
+        android:text="0.00"
+        android:textColor="@color/white"
+        android:textSize="80sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sport_mile"
+        android:layout_centerHorizontal="true"
+        android:text="总公里数"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/textsize_3" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_edge_20">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_sport_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:maxLength="6"
+                android:text="0"
+                android:textColor="@color/text_color_white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_sport_count"
+                android:layout_centerHorizontal="true"
+                android:text="总次数"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/textsize_3" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp">
+
+            <TextView
+                android:id="@+id/tv_sport_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ellipsize="end"
+                android:maxLength="6"
+                android:text="0"
+                android:textColor="@color/text_color_white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_sport_time"
+                android:layout_centerHorizontal="true"
+                android:text="总时长(分钟)"
+                android:textColor="@color/text_color_white"
+                android:textSize="@dimen/textsize_3" />
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_edge_20"
+        android:background="@color/gray"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_edge">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@mipmap/icon_tip"
+            android:drawablePadding="3dp"
+            android:gravity="center_vertical"
+            android:text="@string/run_tips"
+            android:textColor="@color/text_color_1"
+            android:textSize="@dimen/textsize_4"
+            android:drawableLeft="@mipmap/icon_tip" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_edge"
+            android:lineSpacingExtra="@dimen/lineSpacingExtra"
+            android:text="@string/run_tip_one"
+            android:textColor="@color/text_color_2"
+            android:textSize="@dimen/textsize_2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_edge"
+            android:lineSpacingExtra="@dimen/lineSpacingExtra"
+            android:text="@string/run_tip_two"
+            android:textColor="@color/text_color_2"
+            android:textSize="@dimen/textsize_2" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/start_run_btn"
+        android:layout_gravity="center"
+        android:text="@string/start_run"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:background="@drawable/selector_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="10dp"
         />
 </LinearLayout>

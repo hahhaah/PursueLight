@@ -29,7 +29,12 @@
     <string name="today_status">今日情况</string>
     <string name="sport_data">运动数据</string>
     <string name="health_data">健康数据</string>
-    
+
+    <string name="start_run">开始跑步</string>
+    <string name="run_tips">跑步方法</string>
+    <string name="run_tip_one">1.请保持40分钟以上的运动时间</string>
+    <string name="run_tip_two">2.不要跑太快，心率保持在140~160之间</string>
+
     <string name="my_target">我的目标</string>
     <string name="my_record">我的记录</string>
     <string name="modify_info">修改信息</string>

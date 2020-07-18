@@ -21,4 +21,10 @@ public class LogUtils {
       Log.i(tag, msg);
     }
   }
+
+  public static void e(String tag,String msg) {
+    if (MyConstants.DEBUG) {
+      Log.e(tag, msg);
+    }
+  }
 }

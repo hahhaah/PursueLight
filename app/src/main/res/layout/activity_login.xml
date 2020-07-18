@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/colorPurple"
-    tools:context=".activities.LoginActivity">
+    >
 
     <TextView
         android:layout_marginLeft="40dp"
