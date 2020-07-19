@@ -168,4 +168,13 @@ public class PathRecord implements Parcelable {
   @Override
   public void writeToParcel(Parcel parcel, int i) {
   }
+
+  @Override
+  public String toString() {
+    return "PathRecord{" +
+            "mDistance=" + mDistance +
+            ", mDuration=" + mDuration +
+            ", mCalorie=" + mCalorie +
+            '}';
+  }
 }
