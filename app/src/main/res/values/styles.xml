@@ -24,4 +24,12 @@
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
 
+    <style name="matchDialog" parent="@android:style/Theme.Holo.Dialog.NoActionBar.MinWidth">
+        <!--<item name="android:windowIsFloating">false</item>-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+        <item name="android:scrollHorizontally">true</item>
+        <item name="android:windowBackground">@color/transparency</item>
+    </style>
+
 </resources>

@@ -28,8 +28,6 @@ public class MyConstants {
 
   public static final String USER_EMAIL = "userEmail";//用户ID
 
-  public static final String USER_NAME= "userName";
-
   public static final String PASSWORD = "password";//密码
 
 }

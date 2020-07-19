@@ -40,7 +40,8 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="024f9808faa6c2d061564c3ee4318fdd"/>
+            android:value="89a760802ac280d13a7e076b2a610b08"/>
+
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
@@ -67,7 +68,8 @@
         <activity android:name=".activities.TargetActivity"></activity>
         <activity android:name=".activities.RecordActivity"></activity>
         <activity android:name=".activities.ModifyActivity"></activity>
-
+        <activity android:name=".activities.SportMapActivity"></activity>
+        <activity android:name=".activities.SportResultActivity"></activity>
         <!--高德定位服务-->
         <service android:name="com.amap.api.location.APSService" />
 

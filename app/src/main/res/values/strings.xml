@@ -39,4 +39,8 @@
     <string name="my_record">我的记录</string>
     <string name="modify_info">修改信息</string>
     <string name="logout">退出登录</string>
+
+    <string name="date_month_day">%1$s月%2$s日</string>
+    <string name="date_year_month_day">%1$s-%2$s-%3$s</string>
+    <string name="time_hour_minuts">%1$s:%2$s</string>
 </resources>

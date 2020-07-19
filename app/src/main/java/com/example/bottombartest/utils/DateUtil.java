@@ -1,0 +1,42 @@
+package com.example.bottombartest.utils;
+
+import com.example.bottombartest.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * 创建时间: 2020/07/19 12:02 <br>
+ * 作者: xuziwei <br>
+ * 描述:
+ * God bless my code!!
+ */
+public class DateUtil {
+
+  /**
+   * 短日期补位
+   *
+   * @param year  年
+   * @param month 月
+   * @param day   日
+   * @return 返回短时间字符串格式yyyy-MM-dd
+   */
+  public static String formatStringDateShort(int year, int month, int day) {
+    return UIHelper.getString(R.string.date_year_month_day, String.valueOf(year),
+            month < 10 ? "0" + month : String.valueOf(month),
+            day < 10 ? "0" + day : String.valueOf(day));
+  }
+
+  /**
+   * 获取现在时间
+   *
+   * @return 返回短时间字符串格式yyyy-MM-dd
+   */
+  public static String getStringDateShort(long time) {
+    Date currentTime = new Date(time);
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    String dateString = formatter.format(currentTime);
+    return dateString;
+  }
+
+}

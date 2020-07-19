@@ -11,74 +11,83 @@ import java.util.List;
  * 描述:
  * God bless my code!!
  */
-class DataManager implements DBHelper {
+public class DataManager implements DBHelper {
+
+  private RealmHelper realmHelper;
+
+  public DataManager(RealmHelper helper) {
+    realmHelper = helper;
+  }
+
+
   @Override
   public void insertSportRecord(SportMotionRecord record) {
-
+    realmHelper.insertSportRecord(record);
   }
 
   @Override
   public void deleteSportRecord(SportMotionRecord record) {
-
+    realmHelper.deleteSportRecord(record);
   }
 
   @Override
-  public void deleteSportRecord() {
-
+  public void deleteAllSportRecords() {
+    realmHelper.deleteAllSportRecords();
   }
 
   @Override
-  public List<SportMotionRecord> queryRecordList(int master) {
-    return null;
+  public List<SportMotionRecord> queryRecordList(String email) {
+    return realmHelper.queryRecordList(email);
   }
 
   @Override
-  public List<SportMotionRecord> queryRecordList(int master, String dateTag) {
-    return null;
+  public List<SportMotionRecord> queryRecordList(String email, String dateTag) {
+    return realmHelper.queryRecordList(email,dateTag);
   }
 
   @Override
   public List<SportMotionRecord> queryRecordList() {
-    return null;
+    return realmHelper.queryRecordList();
   }
 
   @Override
-  public SportMotionRecord queryRecord(int master, long startTime, long endTime) {
-    return null;
+  public SportMotionRecord queryRecord(String email, long startTime, long endTime) {
+    return realmHelper.queryRecord(email,startTime,endTime);
   }
 
   @Override
-  public SportMotionRecord queryRecord(int master, String dateTag) {
-    return null;
+  public SportMotionRecord queryRecord(String email, String dateTag) {
+    return realmHelper.queryRecord(email,dateTag);
   }
 
   @Override
   public void closeRealm() {
-
+    realmHelper.closeRealm();
   }
 
   @Override
   public void insertAccount(UserAccount account) {
-
+    realmHelper.insertAccount(account);
   }
 
   @Override
   public UserAccount queryAccount(String account) {
-    return null;
+    return realmHelper.queryAccount(account);
   }
 
   @Override
   public boolean checkAccount(String account, String psd) {
-    return false;
+    return realmHelper.checkAccount(account,psd);
   }
 
   @Override
   public boolean checkAccount(String account) {
-    return false;
+    return realmHelper.checkAccount(account);
+
   }
 
   @Override
   public List<UserAccount> queryAllAccounts() {
-    return null;
+    return realmHelper.queryAllAccounts();
   }
 }
