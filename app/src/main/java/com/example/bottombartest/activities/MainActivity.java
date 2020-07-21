@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
 
-  //todo：判断应该显示哪一个fragment
   @Override
   protected void onResume() {
     super.onResume();

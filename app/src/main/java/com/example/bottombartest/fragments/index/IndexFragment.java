@@ -14,18 +14,27 @@ import androidx.fragment.app.Fragment;
 import com.example.bottombartest.R;
 import com.example.bottombartest.entity.LooperItem;
 import com.example.bottombartest.entity.Weather;
+import com.example.bottombartest.interfaces.UserService;
 import com.example.bottombartest.interfaces.WeatherRequest;
+import com.example.bottombartest.utils.MyConstants;
+import com.example.bottombartest.utils.UIHelper;
 import com.example.bottombartest.view.LooperView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.example.bottombartest.utils.MyConstants.*;
 import static com.example.bottombartest.utils.MyConstants.WEATHER_URL;
 
 public class IndexFragment extends Fragment {
@@ -48,7 +57,6 @@ public class IndexFragment extends Fragment {
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     initTestData();
-    initView();
   }
 
   private void initTestData() {
@@ -111,4 +119,34 @@ public class IndexFragment extends Fragment {
 
   }
 
+
+  private void addUser(String email, String pwd) {
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(ZG_API)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
+    UserService service = retrofit.create(UserService.class);
+    JSONObject obj = new JSONObject();
+    try {
+      obj.putOpt(USER_EMAIL,email);
+      obj.putOpt(PASSWORD,pwd);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),obj.toString());
+    Call<Boolean> call = service.addUser(requestBody);
+    call.enqueue(new Callback<Boolean>() {
+      @Override
+      public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+        String res = response.body().toString();
+        Log.d(TAG, "addUser-->: "+res);
+      }
+
+      @Override
+      public void onFailure(Call<Boolean> call, Throwable t) {
+
+      }
+    });
+  }
 }
