@@ -28,6 +28,7 @@ import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,6 +50,7 @@ public class IndexFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
     mRootView = inflater.inflate(R.layout.fragment_index,container,false);
+    addUser("123","123");
     return mRootView;
   }
 
@@ -135,16 +137,17 @@ public class IndexFragment extends Fragment {
     }
 
     RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),obj.toString());
-    Call<Boolean> call = service.addUser(requestBody);
-    call.enqueue(new Callback<Boolean>() {
+    Log.d(TAG, "addUser: --requestbody"+requestBody.toString());
+    Call<ResponseBody> call = service.addUser(requestBody);
+    call.enqueue(new Callback<ResponseBody>() {
       @Override
-      public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-        String res = response.body().toString();
+      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        ResponseBody res = response.body();
         Log.d(TAG, "addUser-->: "+res);
       }
 
       @Override
-      public void onFailure(Call<Boolean> call, Throwable t) {
+      public void onFailure(Call<ResponseBody> call, Throwable t) {
 
       }
     });

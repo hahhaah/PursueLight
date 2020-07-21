@@ -24,13 +24,13 @@ public class MyConstants {
 
   public static final String CITY_URL ="https://geoapi.heweather.net/v2/";
 
-  public static final String ZG_API = "http://39.103.132.187:8000/swagger/";
+  public static final String ZG_API = "http://39.103.132.187:8000/user/";
 
   public static final String IS_LOGIN = "isLogin";//是否登录
 
   public static final String USER_EMAIL = "user_email";//用户ID
 
-  public static final String USER_NAME= "userName";
+  public static final String USER_NAME= "user_name";
 
   public static final String PASSWORD = "password";//密码
 
