@@ -1,20 +1,27 @@
 package com.example.bottombartest.fragments.index;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottombartest.R;
+import com.example.bottombartest.activities.RecordActivity;
+import com.example.bottombartest.adapter.WeatherAdapter;
 import com.example.bottombartest.entity.LooperItem;
 import com.example.bottombartest.entity.Weather;
 import com.example.bottombartest.interfaces.WeatherRequest;
+import com.example.bottombartest.utils.UIHelper;
 import com.example.bottombartest.view.LooperView;
 
 import java.util.ArrayList;
@@ -34,12 +41,15 @@ public class IndexFragment extends Fragment {
   private List<LooperItem> mData;
   private LooperView mLooperView;
   private View mRootView;
+  private RecyclerView mRecyclerView;
+  private WeatherAdapter mWeatherAdapter;
 
   @Nullable
   @Override
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
     mRootView = inflater.inflate(R.layout.fragment_index,container,false);
+
     return mRootView;
   }
 
@@ -48,7 +58,11 @@ public class IndexFragment extends Fragment {
   public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     initTestData();
+    if(savedInstanceState == null){
+      getWeatherData();
+    }
     initView();
+
   }
 
   private void initTestData() {
@@ -83,6 +97,24 @@ public class IndexFragment extends Fragment {
         return mData.get(position % mData.size()).getTitle();
       }
     });
+
+    mRecyclerView = mRootView.findViewById(R.id.weather_recyclerview);
+    LinearLayoutManager manager = new LinearLayoutManager(getActivity());
+    manager.setOrientation(RecyclerView.VERTICAL);
+    mRecyclerView.setLayoutManager(manager);
+
+    mRecyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+        @Override
+        public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+          outRect.top = UIHelper.dip2px(mRootView.getContext(),6);
+          outRect.bottom = UIHelper.dip2px(mRootView.getContext(),5);
+          outRect.left = UIHelper.dip2px(mRootView.getContext(),5);
+        }
+    });
+
+    //设置适配器
+    mWeatherAdapter = new WeatherAdapter();
+    mRecyclerView.setAdapter(mWeatherAdapter);
   }
 
   //获取天气数据
@@ -99,7 +131,9 @@ public class IndexFragment extends Fragment {
       @Override
       public void onResponse(Call<Weather> call, Response<Weather> response) {
         Weather weather = response.body();
-        //todo:更新天气预报信息显示
+        //todo:测试效果
+        mWeatherAdapter.setData(weather.getDaily());
+
         Log.d(TAG, "onResponse: "+weather.getDaily().size());
       }
 

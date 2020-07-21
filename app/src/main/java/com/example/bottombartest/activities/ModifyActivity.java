@@ -1,6 +1,7 @@
 package com.example.bottombartest.activities;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,8 +22,22 @@ public class ModifyActivity extends AppCompatActivity {
     setContentView(R.layout.activity_modify_info);
     
     initView();
+    initEvent();
   }
 
+
+
   private void initView() {
+
+  }
+
+  private void initEvent() {
+    findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        setResult(RESULT_OK);
+        finish();
+      }
+    });
   }
 }

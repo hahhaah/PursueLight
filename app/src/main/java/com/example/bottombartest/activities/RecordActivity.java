@@ -160,6 +160,14 @@ public class RecordActivity extends AppCompatActivity {
         mCalendarView.scrollToCurrent();
       }
     });
+
+    findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        setResult(RESULT_OK);
+        finish();
+      }
+    });
   }
 
 

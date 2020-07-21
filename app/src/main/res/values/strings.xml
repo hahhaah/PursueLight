@@ -36,6 +36,7 @@
     <string name="run_tip_two">2.不要跑太快，心率保持在140~160之间</string>
 
     <string name="my_target">我的目标</string>
+    <string name="new_target">新建目标</string>
     <string name="my_record">我的记录</string>
     <string name="modify_info">修改信息</string>
     <string name="logout">退出登录</string>
@@ -43,6 +44,10 @@
     <string name="date_month_day">%1$s月%2$s日</string>
     <string name="date_year_month_day">%1$s-%2$s-%3$s</string>
     <string name="time_hour_minuts">%1$s:%2$s</string>
+    <string name="target_title">Hi，写下你来到追光的目标吧</string>
+    <string name="target_hint">具体的目标更易达成噢</string>
+
+    <string name="go_create_target">暂无目标,快去添加一个吧！</string>
 
     <string-array name="chinese_week_string_array">
         <item>周日</item>
@@ -52,5 +57,13 @@
         <item>周四</item>
         <item>周五</item>
         <item>周六</item>
+    </string-array>
+
+    <string-array name="comment_list">
+        <item>目标还是要有的，万一实现了呢？</item>
+        <item>跑一次半马～～</item>
+        <item>练出马甲线！！</item>
+        <item>跑步一个月，瘦身成闪电！⚡️</item>
+        <item>定个小目标，瘦他十几斤</item>
     </string-array>
 </resources>

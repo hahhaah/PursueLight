@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xzw="http://schemas.android.com/apk/res-auto"
+    xmlns:toos="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/colorGrey"
     android:layout_height="match_parent">
 
     <TextView
@@ -16,11 +16,19 @@
         android:gravity="center_horizontal" />
 
     <com.example.bottombartest.view.LooperView
+        android:id="@+id/looper_view"
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:paddingBottom="15dp"
-        android:id="@+id/looper_view"
+        android:background="@color/colorGrey"
         xzw:switchTime="4000"
-        xzw:hasTitle="true"
-        />
+        xzw:hasTitle="true" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weather_recyclerview"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
