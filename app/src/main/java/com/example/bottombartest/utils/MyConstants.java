@@ -15,6 +15,7 @@ public class MyConstants {
   //打开相册的请求码
   public static final int REQUEST_PHOTO = 1;
   public static final int REQUEST_REGISTER = 7;
+  public static final int REQUEST_NEW_TARGET = 22;
 
   public static final boolean DEBUG = Boolean.parseBoolean("true");
 
@@ -31,8 +32,18 @@ public class MyConstants {
 
   public static final String USER_EMAIL = "email";
 
+  public static final String USER_ID = "id";
+
   public static final String USER_NAME= "username";//用户名
 
   public static final String PASSWORD = "password";//密码
+
+  public static final String INTRO = "intro";   //用户简介
+
+  public static final String NICKNAME = "last_name";
+
+  public static final String TARGET = "target";
+
+  public static final String TIME = "time";
 
 }

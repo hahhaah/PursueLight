@@ -20,6 +20,8 @@
 
     <string name="verify_code">请输入验证码</string>
     <string name="input_name">请输入用户名</string>
+    <string name="input_nickname">请输入修改后的昵称</string>
+    <string name="input_intro">写一段文字描述下自己吧</string>
     <string name="input_email">请输入邮箱账号</string>
     <string name="agree_protocol">登录即代表同意用户协议和隐私政策</string>
     <string name="read_protocol">我已阅读并同意用户协议和隐私政策</string>
@@ -48,7 +50,7 @@
     <string name="target_title">Hi，写下你来到追光的目标吧</string>
     <string name="target_hint">具体的目标更易达成噢</string>
 
-    <string name="go_create_target">暂无目标,快去添加一个吧！</string>
+    <string name="go_create_target">去添加目标</string>
 
     <string-array name="chinese_week_string_array">
         <item>周日</item>

@@ -138,14 +138,14 @@ public class LoginActivity extends AppCompatActivity {
 
   }
 
-  private void loginSuccess(String email, String pwd) {
+  private void loginSuccess(String name, String pwd) {
     SPUtils.getInstance().put(MyConstants.IS_LOGIN, true);
-    SPUtils.getInstance().put(MyConstants.USER_EMAIL, email);
-    SPUtils.getInstance().put(MyConstants.PASSWORD, pwd);
+    SPUtils.getInstance().put(USER_NAME, name);
+    SPUtils.getInstance().put(PASSWORD, pwd);
 
     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
     startActivity(intent);
-    LoginActivity.this.finish();
+    finish();
   }
 
   private void updateBtnStatus(){
@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity {
       @Override
       public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
         if (response.code()==200) {
-          //登录成功
+          //登录成功 获取id
           try {
             LogUtils.d(TAG, "msg: "+ response.body().string());
             loginSuccess(name,pwd);

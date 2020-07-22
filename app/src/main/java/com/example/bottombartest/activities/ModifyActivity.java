@@ -1,20 +1,53 @@
 package com.example.bottombartest.activities;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.bottombartest.R;
+import com.example.bottombartest.interfaces.UserService;
+import com.example.bottombartest.utils.LogUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.example.bottombartest.utils.MyConstants.INTRO;
+import static com.example.bottombartest.utils.MyConstants.PASSWORD;
+import static com.example.bottombartest.utils.MyConstants.USER_EMAIL;
+import static com.example.bottombartest.utils.MyConstants.USER_ID;
+import static com.example.bottombartest.utils.MyConstants.USER_NAME;
+import static com.example.bottombartest.utils.MyConstants.ZG_API;
 
 /**
  * 创建时间: 2020/07/17 15:05 <br>
  * 作者: xuziwei <br>
- * 描述:
+ * 描述: 修改用户信息
  * God bless my code!!
  */
 public class ModifyActivity extends AppCompatActivity {
+
+  private static final String TAG = "ModifyActivity";
+  private EditText mNameEdt;
+  private EditText mIntroEdt;
+  private Button mModBtn;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,7 +61,19 @@ public class ModifyActivity extends AppCompatActivity {
 
 
   private void initView() {
+    mNameEdt = findViewById(R.id.name_edit);
+    mIntroEdt = findViewById(R.id.input_intro);
+    mModBtn = findViewById(R.id.sure_mod);
 
+    String name  = SPUtils.getInstance().getString(USER_NAME);
+    String intro  = SPUtils.getInstance().getString(INTRO);
+
+    if(! TextUtils.isEmpty(name)) {
+      mNameEdt.setText(name);
+    }
+    if(! TextUtils.isEmpty(intro)) {
+      mIntroEdt.setText(intro);
+    }
   }
 
   private void initEvent() {
@@ -39,5 +84,66 @@ public class ModifyActivity extends AppCompatActivity {
         finish();
       }
     });
+
+    mModBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        final String name = mNameEdt.getText().toString();
+        final String intro = mIntroEdt.getText().toString();
+        LogUtils.d(TAG, "name--: "+name + "intro-->"+intro);
+        if(!TextUtils.isEmpty(name) && !TextUtils.isEmpty(intro)) {
+          modifyInfo(name,intro);
+        }
+      }
+    });
+  }
+
+  private void modifyInfo(final String name, final String intro) {
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(ZG_API)
+            .build();
+    UserService service = retrofit.create(UserService.class);
+
+    JSONObject obj = new JSONObject();
+    try {
+      obj.putOpt(INTRO,intro);
+      obj.putOpt(USER_NAME,name);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+    LogUtils.d(TAG, "json: "+obj.toString());
+    int id = SPUtils.getInstance().getInt(USER_ID);
+    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),obj.toString());
+    Call<ResponseBody> call = service.modify(id,requestBody);
+    call.enqueue(new Callback<ResponseBody>() {
+      @Override
+      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        LogUtils.d(TAG, "msg: "+ response.message());
+        LogUtils.d(TAG, "onResponse: "+response.code());
+
+        if (response.code()==200) {
+          //注册成功
+          try {
+            LogUtils.d(TAG, "body: "+ response.body().string());
+            modifySuccess(name,intro);
+          } catch (IOException e) {
+            ToastUtils.showShort("请稍后再试");
+            e.printStackTrace();
+          }
+        }
+      }
+
+      @Override
+      public void onFailure(Call<ResponseBody> call, Throwable t) {
+        ToastUtils.showShort("出了点小问题，请稍后再试");
+      }
+    });
+  }
+
+  private void modifySuccess(String name, String intro) {
+    SPUtils.getInstance().put(INTRO,intro);
+    ToastUtils.showShort("修改成功!");
+    finish();
   }
 }

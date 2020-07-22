@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.example.bottombartest.R;
+import com.example.bottombartest.entity.User;
 import com.example.bottombartest.interfaces.UserService;
 import com.example.bottombartest.utils.LogUtils;
 
@@ -33,9 +35,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.example.bottombartest.utils.MyConstants.PASSWORD;
 import static com.example.bottombartest.utils.MyConstants.USER_EMAIL;
+import static com.example.bottombartest.utils.MyConstants.USER_ID;
 import static com.example.bottombartest.utils.MyConstants.USER_NAME;
 import static com.example.bottombartest.utils.MyConstants.ZG_API;
 
@@ -173,6 +177,7 @@ public class RegisterActivity extends AppCompatActivity {
   private void register(final String name,final String pwd,final String email){
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(ZG_API)
+            .addConverterFactory(GsonConverterFactory.create())
             .build();
     UserService service = retrofit.create(UserService.class);
 
@@ -187,35 +192,30 @@ public class RegisterActivity extends AppCompatActivity {
 
     LogUtils.d(TAG, "json: "+obj.toString());
     RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),obj.toString());
-    Call<ResponseBody> call = service.register(requestBody);
-    call.enqueue(new Callback<ResponseBody>() {
+    Call<User> call = service.register(requestBody);
+    call.enqueue(new Callback<User>() {
       @Override
-      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-        LogUtils.d(TAG, "msg: "+ response.message());
-        if (response.code()==201) {
+      public void onResponse(Call<User> call, Response<User> response) {
+        Log.d(TAG, "onResponse: "+response.code());
+        User user = response.body();
+        if (user.getCode() == 201) {
           //注册成功
-          try {
-            LogUtils.d(TAG, "body: "+ response.body().string());
-            registerSuccess(name,pwd);
-          } catch (IOException e) {
-            ToastUtils.showShort("请稍后再试");
-            e.printStackTrace();
-          }
-        } else if(response.code() == 400){
+          registerSuccess(name,user.getData().getId());
+        } else if(user.getCode() == 400){
           ToastUtils.showShort("用户名已存在！");
         }
-        Log.d(TAG, "onResponse: "+response.code());
       }
 
       @Override
-      public void onFailure(Call<ResponseBody> call, Throwable t) {
+      public void onFailure(Call<User> call, Throwable t) {
         ToastUtils.showShort("出了点小问题，请稍后再试");
       }
     });
   }
 
-  private void registerSuccess(String name, String pwd) {
+  private void registerSuccess(String name, int id) {
     ToastUtils.showShort("注册成功!");
+    SPUtils.getInstance().put(USER_ID,id);
     Intent data  = new Intent();
     data.putExtra(USER_NAME,name);
     setResult(RESULT_OK,data);

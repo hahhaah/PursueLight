@@ -179,7 +179,6 @@ public class RecordActivity extends AppCompatActivity {
   private void loadSportData() {
     try {
       List<SportMotionRecord> records = dataManager.queryRecordList(SPUtils.getInstance().getString(MyConstants.USER_EMAIL, "123@qq.com"));
-      Log.d("xzw", "loadSportData: "+records.size());
       if (null != records) {
         Map<String, Calendar> map = new HashMap<>();
         for (SportMotionRecord record : records) {

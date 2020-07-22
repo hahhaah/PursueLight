@@ -1,6 +1,7 @@
 package com.example.bottombartest.db;
 
 import com.example.bottombartest.entity.SportMotionRecord;
+import com.example.bottombartest.entity.Target;
 import com.example.bottombartest.entity.UserAccount;
 
 import java.util.List;
@@ -89,5 +90,20 @@ public class DataManager implements DBHelper {
   @Override
   public List<UserAccount> queryAllAccounts() {
     return realmHelper.queryAllAccounts();
+  }
+
+  @Override
+  public void insertTarget(Target target) {
+    realmHelper.insertTarget(target);
+  }
+
+  @Override
+  public void deleteTarget(Target target) {
+    realmHelper.deleteTarget(target);
+  }
+
+  @Override
+  public List<Target> queryAllTargets() {
+    return realmHelper.queryAllTargets();
   }
 }

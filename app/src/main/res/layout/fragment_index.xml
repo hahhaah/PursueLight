@@ -19,7 +19,7 @@
         android:id="@+id/looper_view"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:paddingBottom="15dp"
+        android:paddingVertical="10dp"
         android:background="@color/colorGrey"
         xzw:switchTime="4000"
         xzw:hasTitle="true" />

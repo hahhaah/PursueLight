@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/colorWhite"
@@ -15,11 +16,14 @@
 
     <TextView
         android:id="@+id/user_info"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
         android:layout_height="60dp"
         android:layout_width="match_parent"
         android:textColor="@color/stateBar"
         android:textSize="18sp"
-        android:layout_marginTop="@dimen/margin_edge_20"/>
+        android:layout_marginTop="@dimen/margin_edge_20"
+        tools:ignore="RtlCompat" />
 
     <LinearLayout
         android:id="@+id/target_view"

@@ -2,6 +2,7 @@ package com.example.bottombartest.db;
 
 
 import com.example.bottombartest.entity.SportMotionRecord;
+import com.example.bottombartest.entity.Target;
 import com.example.bottombartest.entity.UserAccount;
 
 import java.util.List;
@@ -20,10 +21,12 @@ public class RealmHelper implements DBHelper {
 
   private static final String DB_SPORT = "sport_motion.realm";//数据库名
   private static final String DB_ACCOUNT = "account.realm";//数据库名
+  private static final String DB_TARGET = "target.realm";
   private static final String DB_KEY = "126xuziwei200047";//秘钥
 
   private Realm sportRealm;
   private Realm accountRealm;
+  private Realm targetRealm;
 
   public RealmHelper() {
     if (sportRealm == null) {
@@ -41,6 +44,16 @@ public class RealmHelper implements DBHelper {
               .deleteRealmIfMigrationNeeded()//声明版本冲突时自动删除原数据库，开发时候打开
               .schemaVersion(1)//指定数据库的版本号
               .name(DB_ACCOUNT)//指定数据库的名称
+              .encryptionKey(getKey(DB_KEY))
+              .build()
+      );
+    }
+
+    if (targetRealm == null) {
+      targetRealm = Realm.getInstance(new RealmConfiguration.Builder()
+              //.deleteRealmIfMigrationNeeded()
+              .schemaVersion(3)
+              .name(DB_TARGET)
               .encryptionKey(getKey(DB_KEY))
               .build()
       );
@@ -80,6 +93,17 @@ public class RealmHelper implements DBHelper {
       primaryKey = last.getId() + 1;
     }
     return primaryKey;
+  }
+
+  //获取最大的PrimaryKey并加一,否则id不变，会覆盖已有记录
+  private long getLargerKey() {
+    long key = 0;
+    RealmResults<Target> results = targetRealm.where(Target.class).findAll();
+    if (results != null && results.size() > 0) {
+      Target last = results.last();
+      key = last.getId() + 1;
+    }
+    return key;
   }
 
   @Override
@@ -146,6 +170,8 @@ public class RealmHelper implements DBHelper {
       sportRealm.close();
     if (null != accountRealm && !accountRealm.isClosed())
       accountRealm.close();
+    if (null != targetRealm && !targetRealm.isClosed())
+      targetRealm.close();
   }
 
   @Override
@@ -184,5 +210,32 @@ public class RealmHelper implements DBHelper {
   public List<UserAccount> queryAllAccounts() {
     RealmResults<UserAccount> results = accountRealm.where(UserAccount.class).findAll();
     return accountRealm.copyFromRealm(results);
+  }
+
+  @Override
+  public void insertTarget(final Target target) {
+    targetRealm.executeTransaction(new Realm.Transaction() {
+      @Override
+      public void execute(Realm realm) {
+        target.setId(getLargerKey());
+        realm.copyToRealm(target);
+      }
+    });
+  }
+
+  @Override
+  public void deleteTarget(final Target target) {
+    targetRealm.executeTransaction(new Realm.Transaction() {
+      @Override
+      public void execute(Realm realm) {
+        target.deleteFromRealm();
+      }
+    });
+  }
+
+  @Override
+  public List<Target> queryAllTargets() {
+    RealmResults<Target> results = accountRealm.where(Target.class).findAll();
+    return targetRealm.copyFromRealm(results);
   }
 }

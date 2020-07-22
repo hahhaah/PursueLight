@@ -76,7 +76,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     mRecordView = mRootView.findViewById(R.id.record_view);
     mModifyView = mRootView.findViewById(R.id.modify_view);
     mLogoutView = mRootView.findViewById(R.id.logout_view);
-
+    mTvInfo = mRootView.findViewById(R.id.user_info);
+    mTvInfo.setText(SPUtils.getInstance().getString(USER_NAME));
   }
 
   private void initEvent() {

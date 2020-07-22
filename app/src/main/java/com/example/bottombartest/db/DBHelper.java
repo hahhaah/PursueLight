@@ -1,6 +1,7 @@
 package com.example.bottombartest.db;
 
 import com.example.bottombartest.entity.SportMotionRecord;
+import com.example.bottombartest.entity.Target;
 import com.example.bottombartest.entity.UserAccount;
 
 import java.util.List;
@@ -106,5 +107,25 @@ interface DBHelper {
    * 获取 全部的账号
    */
   List<UserAccount> queryAllAccounts();
+
+
+  /**
+   * 增加 目标
+   *
+   * @param target 账号
+   */
+  void insertTarget(Target target);
+
+  /**
+   * 删除 某一目标
+   *
+   * @param target 运动数据
+   */
+  void deleteTarget(Target target);
+
+  /**
+   * 获取 全部的目标
+   */
+  List<Target> queryAllTargets();
 
 }

@@ -138,7 +138,7 @@ public class IndexFragment extends Fragment {
       @Override
       public void onResponse(Call<Weather> call, Response<Weather> response) {
         Weather weather = response.body();
-        //todo:测试效果
+
         mWeatherAdapter.setData(weather.getDaily());
 
         Log.d(TAG, "onResponse: "+weather.getDaily().size());

@@ -33,7 +33,7 @@
             android:value="89a760802ac280d13a7e076b2a610b08" />
 
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".activities.TargetActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -49,11 +49,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.MainActivity" />
+
         <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.FindPwdActivity" />
         <activity android:name=".activities.ModifyPwdActivity" />
-        <activity android:name=".activities.TargetActivity" />
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.RecordActivity" />
         <activity android:name=".activities.ModifyActivity" />
         <activity android:name=".activities.SportMapActivity" />

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:background="@drawable/bg_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <CheckBox
+        android:id="@+id/box_finished"
+        android:buttonTint="@color/colorPurple"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"/>
+
+
+    <TextView
+        android:id="@+id/target_date"
+        android:layout_height="match_parent"
+        android:layout_width="160dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/stateBar"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="true"
+        />
+
+    <TextView
+        android:id="@+id/target_content"
+        android:layout_width="wrap_content"
+        android:gravity="center_vertical|right"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:textColor="@color/stateBar"
+        android:layout_height="match_parent"/>
+</LinearLayout>
