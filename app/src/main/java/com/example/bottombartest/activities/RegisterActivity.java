@@ -1,22 +1,43 @@
 package com.example.bottombartest.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.bottombartest.R;
+import com.example.bottombartest.interfaces.UserService;
 import com.example.bottombartest.utils.LogUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.example.bottombartest.utils.MyConstants.PASSWORD;
+import static com.example.bottombartest.utils.MyConstants.USER_EMAIL;
+import static com.example.bottombartest.utils.MyConstants.USER_NAME;
+import static com.example.bottombartest.utils.MyConstants.ZG_API;
 
 /*
  * author：xuziwei
@@ -29,10 +50,10 @@ public class RegisterActivity extends AppCompatActivity {
   private static final String TAG = "RegisterActivity";
   private Button mRegBtn;
   private CheckBox mCheckBox;
-  private EditText mEmailEdt;
+  private EditText mNameEdt;
   private EditText mPwdEdt;
   private EditText mConfirmEdt;
-  private EditText mVerifyEdt;
+  private EditText mEmailEdt;
   private Button mSendBtn;
 
   private boolean isTimerStart = false;
@@ -50,10 +71,10 @@ public class RegisterActivity extends AppCompatActivity {
 
   private void initView() {
     mCheckBox = findViewById(R.id.res_checkbox);
-    mEmailEdt = findViewById(R.id.reg_email_edit);
+    mNameEdt = findViewById(R.id.reg_name_edit);
     mPwdEdt = findViewById(R.id.reg_pwd_edit);
     mConfirmEdt = findViewById(R.id.confirm_edit);
-    mVerifyEdt = findViewById(R.id.verify_edit);
+    mEmailEdt = findViewById(R.id.reg_email_edit);
     mSendBtn = findViewById(R.id.reg_send_code);
     mRegBtn = findViewById(R.id.register_btn);
     mRegBtn.setEnabled(false);
@@ -64,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
     boolean hasEmail = false;
     boolean hasPassword = false;
     boolean hasVerifyCode = false;
-    if (!TextUtils.isEmpty(mEmailEdt.getText())) {
+    if (!TextUtils.isEmpty(mNameEdt.getText())) {
       hasEmail = true;
       if(!isTimerStart)mSendBtn.setEnabled(true);
     }
@@ -73,7 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
       hasPassword = true;
     }
 
-    if (!TextUtils.isEmpty(mVerifyEdt.getText())){
+    if (!TextUtils.isEmpty(mEmailEdt.getText())){
       hasVerifyCode = true;
     }
 
@@ -102,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
         updateBtnStatus();
       }
     };
-    mEmailEdt.addTextChangedListener(watcher);
+    mNameEdt.addTextChangedListener(watcher);
 
     mPwdEdt.addTextChangedListener(watcher);
 
@@ -130,18 +151,75 @@ public class RegisterActivity extends AppCompatActivity {
     mRegBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
+        String name = mNameEdt.getText().toString();
         String email = mEmailEdt.getText().toString();
         String pwd = mPwdEdt.getText().toString();
         String confirm = mConfirmEdt.getText().toString();
         if(!confirm.equals(pwd)){
           Toast.makeText(RegisterActivity.this,"两次密码输入不一致！",Toast.LENGTH_SHORT).show();
+          return;
         }
-        LogUtils.d(TAG,"email-->"+email+", pwd-->"+pwd+", confirm-->"+confirm);
-
-
+        if(pwd.length() < 6){
+          Toast.makeText(RegisterActivity.this,"密码不能小于6位！",Toast.LENGTH_SHORT).show();
+          return;
+        }
+        LogUtils.d(TAG,"name-->"+name+", pwd-->"+pwd+", email-->"+email);
+        register(name,pwd,email);
       }
     });
 
+  }
+
+  private void register(final String name,final String pwd,final String email){
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(ZG_API)
+            .build();
+    UserService service = retrofit.create(UserService.class);
+
+    JSONObject obj = new JSONObject();
+    try {
+      obj.putOpt(PASSWORD,pwd);
+      obj.putOpt(USER_EMAIL,email);
+      obj.putOpt(USER_NAME,name);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+    LogUtils.d(TAG, "json: "+obj.toString());
+    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),obj.toString());
+    Call<ResponseBody> call = service.register(requestBody);
+    call.enqueue(new Callback<ResponseBody>() {
+      @Override
+      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        LogUtils.d(TAG, "msg: "+ response.message());
+        if (response.code()==201) {
+          //注册成功
+          try {
+            LogUtils.d(TAG, "body: "+ response.body().string());
+            registerSuccess(name,pwd);
+          } catch (IOException e) {
+            ToastUtils.showShort("请稍后再试");
+            e.printStackTrace();
+          }
+        } else if(response.code() == 400){
+          ToastUtils.showShort("用户名已存在！");
+        }
+        Log.d(TAG, "onResponse: "+response.code());
+      }
+
+      @Override
+      public void onFailure(Call<ResponseBody> call, Throwable t) {
+        ToastUtils.showShort("出了点小问题，请稍后再试");
+      }
+    });
+  }
+
+  private void registerSuccess(String name, String pwd) {
+    ToastUtils.showShort("注册成功!");
+    Intent data  = new Intent();
+    data.putExtra(USER_NAME,name);
+    setResult(RESULT_OK,data);
+    finish();
   }
 
 

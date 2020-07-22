@@ -1,5 +1,6 @@
 package com.example.bottombartest.activities;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,9 +15,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.bottombartest.R;
+import com.example.bottombartest.interfaces.UserService;
 import com.example.bottombartest.utils.LogUtils;
 import com.example.bottombartest.utils.MyConstants;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import static com.example.bottombartest.utils.MyConstants.PASSWORD;
+import static com.example.bottombartest.utils.MyConstants.REQUEST_REGISTER;
+import static com.example.bottombartest.utils.MyConstants.USER_NAME;
+import static com.example.bottombartest.utils.MyConstants.ZG_API;
 
 /*
  * author：xuziwei
@@ -25,7 +46,7 @@ import com.example.bottombartest.utils.MyConstants;
  */
 public class LoginActivity extends AppCompatActivity {
 
-  private EditText mEmailEdt;
+  private EditText mNameEdt;
   private EditText mPwdEdt;
   private Button mLoginBtn;
   private TextView mRegisterTv;
@@ -44,7 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
   private void initView() {
-    mEmailEdt = findViewById(R.id.email_edit);
+    mNameEdt = findViewById(R.id.name_edit);
     mPwdEdt = findViewById(R.id.pwd_edit);
     mLoginBtn = findViewById(R.id.login_btn);
     mLoginBtn.setEnabled(false);
@@ -82,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
       }
     };
 
-    mEmailEdt.addTextChangedListener(watcher);
+    mNameEdt.addTextChangedListener(watcher);
 
     mPwdEdt.addTextChangedListener(watcher);
 
@@ -100,20 +121,18 @@ public class LoginActivity extends AppCompatActivity {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,REQUEST_REGISTER);
       }
     });
 
-    //todo 向后端服务器发起查询
+
     mLoginBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        String email = mEmailEdt.getText().toString();
+        String name = mNameEdt.getText().toString();
         String pwd = mPwdEdt.getText().toString();
-        if(email.equals("123@qq.com") && pwd.equals("123")) {
-          loginSuccess(email, pwd);
-        }
-        LogUtils.d(TAG,"email-->"+email+", pwd-->"+pwd);
+        login(name,pwd);
+        LogUtils.d(TAG,"name-->"+name+", pwd-->"+pwd);
       }
     });
 
@@ -130,8 +149,7 @@ public class LoginActivity extends AppCompatActivity {
 
   private void updateBtnStatus(){
     boolean hasInput = false;
-    boolean hasPassword = false;
-    if (!TextUtils.isEmpty(mEmailEdt.getText()) && !TextUtils.isEmpty(mPwdEdt.getText())) {
+    if (!TextUtils.isEmpty(mNameEdt.getText()) && !TextUtils.isEmpty(mPwdEdt.getText())) {
       hasInput = true;
     }
 
@@ -139,6 +157,56 @@ public class LoginActivity extends AppCompatActivity {
       mLoginBtn.setEnabled(true);
     } else {
       mLoginBtn.setEnabled(false);
+    }
+  }
+
+  //向服务器发起请求查询用户
+  private void login(final String name, final String pwd){
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(ZG_API)
+            .build();
+    UserService service = retrofit.create(UserService.class);
+
+    JSONObject obj = new JSONObject();
+    try {
+      obj.putOpt(PASSWORD,pwd);
+      obj.putOpt(USER_NAME,name);
+    } catch (JSONException e) {
+      e.printStackTrace();
+    }
+
+    LogUtils.d(TAG, "json: "+obj.toString());
+    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),obj.toString());
+    Call<ResponseBody> call = service.login(requestBody);
+    call.enqueue(new Callback<ResponseBody>() {
+      @Override
+      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+        if (response.code()==200) {
+          //登录成功
+          try {
+            LogUtils.d(TAG, "msg: "+ response.body().string());
+            loginSuccess(name,pwd);
+          } catch (IOException e) {
+            ToastUtils.showShort("请稍后再试");
+            e.printStackTrace();
+          }
+        } else {
+          ToastUtils.showShort("出了点小问题，请稍后再试");
+        }
+      }
+
+      @Override
+      public void onFailure(Call<ResponseBody> call, Throwable t) {
+        ToastUtils.showShort("用户名或密码输入错误");
+      }
+    });
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
+    if( requestCode == REQUEST_REGISTER && resultCode == RESULT_OK) {
+      mNameEdt.setText(data.getStringExtra(USER_NAME));
     }
   }
 }

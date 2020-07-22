@@ -39,12 +39,12 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/email_edit"
+            android:id="@+id/name_edit"
             android:background="@null"
             android:inputType="textEmailAddress"
             android:textColorHint = "@color/colorGrey"
             android:layout_marginLeft="6dp"
-            android:hint="@string/input_email"
+            android:hint="@string/input_name"
             android:textColor="@color/colorDarkGrey"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

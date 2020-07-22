@@ -50,7 +50,6 @@ public class IndexFragment extends Fragment {
   public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     super.onCreateView(inflater, container, savedInstanceState);
     mRootView = inflater.inflate(R.layout.fragment_index,container,false);
-    addUser("123","123");
     return mRootView;
   }
 
@@ -118,38 +117,6 @@ public class IndexFragment extends Fragment {
 
       }
     });
-
   }
 
-
-  private void addUser(String email, String pwd) {
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(ZG_API)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
-    UserService service = retrofit.create(UserService.class);
-    JSONObject obj = new JSONObject();
-    try {
-      obj.putOpt(USER_EMAIL,email);
-      obj.putOpt(PASSWORD,pwd);
-    } catch (JSONException e) {
-      e.printStackTrace();
-    }
-
-    RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),obj.toString());
-    Log.d(TAG, "addUser: --requestbody"+requestBody.toString());
-    Call<ResponseBody> call = service.addUser(requestBody);
-    call.enqueue(new Callback<ResponseBody>() {
-      @Override
-      public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-        ResponseBody res = response.body();
-        Log.d(TAG, "addUser-->: "+res);
-      }
-
-      @Override
-      public void onFailure(Call<ResponseBody> call, Throwable t) {
-
-      }
-    });
-  }
 }

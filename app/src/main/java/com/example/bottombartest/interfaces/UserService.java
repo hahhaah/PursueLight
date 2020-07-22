@@ -18,10 +18,13 @@ import retrofit2.http.Path;
  */
 public interface UserService {
 
-  @Headers("Content-Type: application/json")
-  @POST("users")
-  Call<ResponseBody> addUser(@Body RequestBody body);
+  @POST("users/users")
+  Call<ResponseBody> register(@Body RequestBody body);
 
   @GET("users/{id}")
   Call<ResponseBody> getUserInfo(@Path("id")int id);
+
+  @POST("login")
+  Call<ResponseBody> login(@Body RequestBody body);
+
 }

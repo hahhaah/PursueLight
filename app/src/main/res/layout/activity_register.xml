@@ -39,12 +39,12 @@
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/reg_email_edit"
+            android:id="@+id/reg_name_edit"
             android:background="@null"
             android:inputType="textEmailAddress"
             android:textColorHint = "@color/colorGrey"
             android:layout_marginLeft="6dp"
-            android:hint="@string/input_email"
+            android:hint="@string/input_name"
             android:textColor="@color/colorDarkGrey"
             android:layout_width="0dp"
             android:layout_weight="3"
@@ -63,6 +63,35 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:id="@+id/name_input_view"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_input"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="10dp"
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <ImageView
+            android:src="@drawable/email"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/reg_email_edit"
+            android:background="@null"
+            android:inputType="textEmailAddress"
+            android:layout_marginLeft="6dp"
+            android:textColorHint = "@color/colorGrey"
+            android:hint="@string/input_email"
+            android:textColor="@color/colorDarkGrey"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -124,35 +153,6 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:id="@+id/verify_input_view"
-        android:layout_gravity="center"
-        android:background="@drawable/shape_input"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginVertical="10dp"
-        android:padding="8dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp">
-
-        <ImageView
-            android:src="@drawable/verify"
-            android:layout_gravity="center_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/verify_edit"
-            android:background="@null"
-            android:inputType="textPassword"
-            android:layout_marginLeft="6dp"
-            android:textColorHint = "@color/colorGrey"
-            android:hint="@string/verify_code"
-            android:textColor="@color/colorDarkGrey"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

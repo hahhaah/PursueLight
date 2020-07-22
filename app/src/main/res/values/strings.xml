@@ -19,6 +19,7 @@
     <string name="input_new_pwd">请输入新的密码</string>
 
     <string name="verify_code">请输入验证码</string>
+    <string name="input_name">请输入用户名</string>
     <string name="input_email">请输入邮箱账号</string>
     <string name="agree_protocol">登录即代表同意用户协议和隐私政策</string>
     <string name="read_protocol">我已阅读并同意用户协议和隐私政策</string>

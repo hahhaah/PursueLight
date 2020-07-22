@@ -14,6 +14,7 @@ public class MyConstants {
   public static final int REQUEST_CAMERA = 0;
   //打开相册的请求码
   public static final int REQUEST_PHOTO = 1;
+  public static final int REQUEST_REGISTER = 7;
 
   public static final boolean DEBUG = Boolean.parseBoolean("true");
 
@@ -24,13 +25,13 @@ public class MyConstants {
 
   public static final String CITY_URL ="https://geoapi.heweather.net/v2/";
 
-  public static final String ZG_API = "http://39.103.132.187:8000/user/";
+  public static final String ZG_API = "http://39.103.132.187:8000/";
 
   public static final String IS_LOGIN = "isLogin";//是否登录
 
-  public static final String USER_EMAIL = "user_email";//用户ID
+  public static final String USER_EMAIL = "email";
 
-  public static final String USER_NAME= "user_name";
+  public static final String USER_NAME= "username";//用户名
 
   public static final String PASSWORD = "password";//密码
 
