@@ -30,22 +30,22 @@ interface DBHelper {
   /**
    * 删除 全部运动数据
    */
-  void deleteSportRecord();
+  void deleteAllSportRecords();
 
   /**
    * 获取 某人的运动数据
    *
-   * @param master 登陆者
+   * @param email    用户邮箱
    */
-  List<SportMotionRecord> queryRecordList(int master);
+  List<SportMotionRecord> queryRecordList(String email);
 
   /**
    * 获取 某人的运动数据
    *
-   * @param master  登陆者
+   * @param email    用户邮箱
    * @param dateTag 时间标记
    */
-  List<SportMotionRecord> queryRecordList(int master, String dateTag);
+  List<SportMotionRecord> queryRecordList(String email, String dateTag);
 
   /**
    * 获取 全部的运动数据
@@ -55,19 +55,19 @@ interface DBHelper {
   /**
    * 获取 运动数据
    *
-   * @param master    登陆者
+   * @param email    用户邮箱
    * @param startTime 开始时间
    * @param endTime   结束时间
    */
-  SportMotionRecord queryRecord(int master, long startTime, long endTime);
+  SportMotionRecord queryRecord(String email, long startTime, long endTime);
 
   /**
    * 获取 运动数据
    *
-   * @param master  登陆者
+   * @param email  用户邮箱
    * @param dateTag 时间标记
    */
-  SportMotionRecord queryRecord(int master, String dateTag);
+  SportMotionRecord queryRecord(String email, String dateTag);
 
   /**
    * 关闭数据库

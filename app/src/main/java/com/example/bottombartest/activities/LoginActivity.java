@@ -140,8 +140,9 @@ public class LoginActivity extends AppCompatActivity {
 
   private void loginSuccess(String email, String pwd) {
     SPUtils.getInstance().put(MyConstants.IS_LOGIN, true);
-    SPUtils.getInstance().put(MyConstants.USER_NAME, email);
+    SPUtils.getInstance().put(MyConstants.USER_EMAIL, email);
     SPUtils.getInstance().put(MyConstants.PASSWORD, pwd);
+
     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
     startActivity(intent);
     LoginActivity.this.finish();

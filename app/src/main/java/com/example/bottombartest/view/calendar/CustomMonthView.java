@@ -19,7 +19,7 @@ import static com.example.bottombartest.utils.UIHelper.dip2px;
  * 描述:
  * God bless my code!!
  */
-class CustomMonthView extends MonthView {
+public class CustomMonthView extends MonthView {
 
   private int mRadius;
 

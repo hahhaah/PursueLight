@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:background="@color/layout_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <RelativeLayout
-        android:background="@color/color_title_bg"
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="45dp">
+        android:layout_height="@dimen/title_height">
 
         <ImageView
-            android:id="@+id/target_back"
-            android:src="@drawable/back"
+            android:id="@+id/ic_back"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_width="@dimen/icon_size"
-            android:layout_height="@dimen/icon_size"/>
+            android:layout_marginLeft="@dimen/item_edge"
+            android:src="@drawable/ic_back" />
 
         <TextView
-            android:text="@string/my_target"
-            android:textSize="@dimen/textsize_big"
             android:textColor="@color/stateBar"
+            android:text="@string/my_target"
+            android:textSize="@dimen/textsize_8"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -28,8 +30,26 @@
     </RelativeLayout>
 
     <FrameLayout
-        android:id="@+id/target_fragment_container"
+        android:id="@+id/fl_no_target"
+        android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/go_create_target"
+            android:layout_gravity="center"
+            android:text="@string/go_create_target"
+            android:textColor="@color/text_color_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </FrameLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/target_list"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

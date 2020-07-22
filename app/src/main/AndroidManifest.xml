@@ -2,45 +2,36 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bottombartest">
-
-    <!--用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <!--用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <!--获取运营商信息，用于支持提供运营商信息相关的接口-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    <!--这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-    <!--用于访问网络-->
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
-    <!--用于读取手机当前的状态-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-
-    <!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    <!--用于申请调用A-GPS模块-->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
-    <!--用于申请获取蓝牙信息进行室内定位-->
-    <uses-permission android:name="android.permission.BLUETOOTH"></uses-permission>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"></uses-permission>
+    <!-- 用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- 用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> <!-- 用于访问网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- 写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 用于申请调用A-GPS模块 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> <!-- 用于申请获取蓝牙信息进行室内定位 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".activities.NewTargetActivity"></activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="024f9808faa6c2d061564c3ee4318fdd"/>
+            android:value="89a760802ac280d13a7e076b2a610b08" />
+
         <activity
             android:name=".activities.SplashActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
@@ -53,34 +44,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-
-        <activity android:name=".activities.LoginActivity"></activity>
-        <activity android:name=".activities.MainActivity"></activity>
-        <activity android:name=".activities.RegisterActivity"></activity>
-        <activity android:name=".activities.FindPwdActivity"></activity>
-        <activity android:name=".activities.ModifyPwdActivity"></activity>
-        <activity android:name=".activities.TargetActivity"></activity>
-        <activity android:name=".activities.RecordActivity"></activity>
-        <activity android:name=".activities.ModifyActivity"></activity>
-
-        <!--高德定位服务-->
-        <service android:name="com.amap.api.location.APSService" />
-
-<!--        <meta-data-->
-<!--            android:name="com.amap.api.v2.apikey"-->
-<!--            android:value="7b175196c075543e296831feeeb1eacc" />-->
-
-        <!--计步定位服务-->
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.FindPwdActivity" />
+        <activity android:name=".activities.ModifyPwdActivity" />
+        <activity android:name=".activities.TargetActivity" />
+        <activity android:name=".activities.RecordActivity" />
+        <activity android:name=".activities.ModifyActivity" />
+        <activity android:name=".activities.SportMapActivity" />
+        <activity android:name=".activities.SportResultActivity" /> <!-- 高德定位服务 -->
+        <service android:name="com.amap.api.location.APSService" /> <!-- <meta-data -->
+        <!-- android:name="com.amap.api.v2.apikey" -->
+        <!-- android:value="7b175196c075543e296831feeeb1eacc" /> -->
+        <!-- 计步定位服务 -->
         <service
             android:name=".sports.LocationService"
             android:enabled="true"
             android:exported="false">
-            <!--exported属性，指示该服务是否能够被其他应用程序组件调用或跟它交互-->
+
+            <!-- exported属性，指示该服务是否能够被其他应用程序组件调用或跟它交互 -->
             <intent-filter android:priority="1000">
                 <action android:name="com.example.bottombartest.sports.LocationService" />
             </intent-filter>
@@ -91,10 +78,10 @@
             android:authorities="com.example.bottombartest.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
 </manifest>

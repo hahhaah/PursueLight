@@ -14,7 +14,7 @@ import java.util.List;
  * 描述:
  * God bless my code!!
  */
-class PathRecord implements Parcelable {
+public class PathRecord implements Parcelable {
 
   //主键
   private Long id;
@@ -32,6 +32,107 @@ class PathRecord implements Parcelable {
   private Long mStartTime;
   //运动结束时间
   private Long mEndTime;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public LatLng getStartPoint() {
+    return mStartPoint;
+  }
+
+  public void setStartPoint(LatLng startPoint) {
+    mStartPoint = startPoint;
+  }
+
+  public LatLng getEndPoint() {
+    return mEndPoint;
+  }
+
+  public void addPoint(LatLng point) {
+    mPathLinePoints.add(point);
+  }
+
+  public void setEndPoint(LatLng endPoint) {
+    mEndPoint = endPoint;
+  }
+
+  public List<LatLng> getPathLinePoints() {
+    return mPathLinePoints;
+  }
+
+  public void setPathLinePoints(List<LatLng> pathLinePoints) {
+    mPathLinePoints = pathLinePoints;
+  }
+
+  public Double getDistance() {
+    return mDistance;
+  }
+
+  public void setDistance(Double distance) {
+    mDistance = distance;
+  }
+
+  public Long getDuration() {
+    return mDuration;
+  }
+
+  public void setDuration(Long duration) {
+    mDuration = duration;
+  }
+
+  public Long getStartTime() {
+    return mStartTime;
+  }
+
+  public void setStartTime(Long startTime) {
+    mStartTime = startTime;
+  }
+
+  public Long getEndTime() {
+    return mEndTime;
+  }
+
+  public void setEndTime(Long endTime) {
+    mEndTime = endTime;
+  }
+
+  public Double getCalorie() {
+    return mCalorie;
+  }
+
+  public void setCalorie(Double calorie) {
+    mCalorie = calorie;
+  }
+
+  public Double getSpeed() {
+    return mSpeed;
+  }
+
+  public void setSpeed(Double speed) {
+    mSpeed = speed;
+  }
+
+  public Double getDistribution() {
+    return mDistribution;
+  }
+
+  public void setDistribution(Double distribution) {
+    mDistribution = distribution;
+  }
+
+  public String getDateTag() {
+    return mDateTag;
+  }
+
+  public void setDateTag(String dateTag) {
+    mDateTag = dateTag;
+  }
+
   //消耗卡路里
   private Double mCalorie;
   //平均时速(公里/小时)
@@ -40,6 +141,10 @@ class PathRecord implements Parcelable {
   private Double mDistribution;
   //日期标记
   private String mDateTag;
+
+  public PathRecord() {
+
+  }
   protected PathRecord(Parcel in) {
   }
 
@@ -62,5 +167,14 @@ class PathRecord implements Parcelable {
 
   @Override
   public void writeToParcel(Parcel parcel, int i) {
+  }
+
+  @Override
+  public String toString() {
+    return "PathRecord{" +
+            "mDistance=" + mDistance +
+            ", mDuration=" + mDuration +
+            ", mCalorie=" + mCalorie +
+            '}';
   }
 }
