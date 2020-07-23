@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,6 +53,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
   private View mRootView;
   private ImageView mIvPhoto;
   private TextView mTvInfo;
+  private TextView mTvIntro;
   private LinearLayout mTargetView;
   private LinearLayout mRecordView;
   private LinearLayout mModifyView;
@@ -76,8 +78,23 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     mRecordView = mRootView.findViewById(R.id.record_view);
     mModifyView = mRootView.findViewById(R.id.modify_view);
     mLogoutView = mRootView.findViewById(R.id.logout_view);
-    mTvInfo = mRootView.findViewById(R.id.user_info);
-    mTvInfo.setText(SPUtils.getInstance().getString(USER_NAME));
+    mTvInfo = mRootView.findViewById(R.id.user_name);
+    mTvIntro = mRootView.findViewById(R.id.user_intro);
+
+
+    updateIntro();
+  }
+
+  private void updateIntro() {
+    if (!TextUtils.isEmpty(SPUtils.getInstance().getString(INTRO))) {
+      mTvIntro.setText(SPUtils.getInstance().getString(INTRO));
+    } else {
+      mTvIntro.setText("这个用户很懒，什么都没有写");
+    }
+
+    if (!TextUtils.isEmpty(SPUtils.getInstance().getString(INTRO))) {
+      mTvInfo.setText(SPUtils.getInstance().getString(USER_NAME));
+    }
   }
 
   private void initEvent() {
@@ -177,8 +194,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     Glide.with(getActivity()).load(resultUri).skipMemoryCache(true) // 不使用内存缓存
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(mIvPhoto);
-
-    //todo：sp存储在本地
   }
 
   private void choosePhoto() {
@@ -271,6 +286,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         break;
       case R.id.logout_view:
         SPUtils.getInstance().put(IS_LOGIN, false);
+        SPUtils.getInstance().clear();
         ToastUtils.showShort("您已退出登录!");
         Intent it = new Intent(getActivity(), LoginActivity.class);
         startActivity(it);
@@ -278,5 +294,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
       default:
         break;
     }
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    updateIntro();
   }
 }

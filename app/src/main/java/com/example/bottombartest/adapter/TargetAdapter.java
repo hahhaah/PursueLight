@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottombartest.R;
-import com.example.bottombartest.activities.TargetActivity;
-import com.example.bottombartest.entity.DailyBean;
 import com.example.bottombartest.entity.Target;
 
 import java.util.ArrayList;

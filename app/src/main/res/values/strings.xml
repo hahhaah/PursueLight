@@ -18,6 +18,9 @@
     <string name="confirm_pwd">再次输入密码</string>
     <string name="input_new_pwd">请输入新的密码</string>
 
+    <string name="input_height">请输入您的身高</string>
+    <string name="input_weight">请输入您的体重</string>
+
     <string name="verify_code">请输入验证码</string>
     <string name="input_name">请输入用户名</string>
     <string name="input_nickname">请输入修改后的昵称</string>

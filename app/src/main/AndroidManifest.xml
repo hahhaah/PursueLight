@@ -26,14 +26,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.NewTargetActivity"></activity>
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="89a760802ac280d13a7e076b2a610b08" />
 
         <activity
-            android:name=".activities.TargetActivity"
+            android:name=".activities.SplashActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -56,6 +55,8 @@
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.RecordActivity" />
         <activity android:name=".activities.ModifyActivity" />
+        <activity android:name=".activities.TargetActivity"/>
+        <activity android:name=".activities.NewTargetActivity"/>
         <activity android:name=".activities.SportMapActivity" />
         <activity android:name=".activities.SportResultActivity" /> <!-- 高德定位服务 -->
         <service android:name="com.amap.api.location.APSService" /> <!-- <meta-data -->

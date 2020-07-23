@@ -4,6 +4,7 @@ package com.example.bottombartest.db;
 import com.example.bottombartest.entity.SportMotionRecord;
 import com.example.bottombartest.entity.Target;
 import com.example.bottombartest.entity.UserAccount;
+import com.example.bottombartest.utils.LogUtils;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public class RealmHelper implements DBHelper {
 
     if (targetRealm == null) {
       targetRealm = Realm.getInstance(new RealmConfiguration.Builder()
-              //.deleteRealmIfMigrationNeeded()
+              .deleteRealmIfMigrationNeeded()
               .schemaVersion(3)
               .name(DB_TARGET)
               .encryptionKey(getKey(DB_KEY))
@@ -218,7 +219,8 @@ public class RealmHelper implements DBHelper {
       @Override
       public void execute(Realm realm) {
         target.setId(getLargerKey());
-        realm.copyToRealm(target);
+        LogUtils.d("xzw","insert target-->"+target.toString());
+        realm.copyToRealmOrUpdate(target);
       }
     });
   }

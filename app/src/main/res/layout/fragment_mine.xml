@@ -15,14 +15,26 @@
         android:src="@mipmap/start" />
 
     <TextView
-        android:id="@+id/user_info"
+        android:id="@+id/user_name"
         android:textAlignment="center"
         android:gravity="center_vertical"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textColor="@color/stateBar"
+        android:textSize="20sp"
+        android:layout_marginTop="@dimen/margin_edge"
+        tools:ignore="RtlCompat" />
+
+
+    <TextView
+        android:id="@+id/user_intro"
+        android:textAlignment="center"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:textColor="@color/stateBar"
         android:textSize="18sp"
-        android:layout_marginTop="@dimen/margin_edge_20"
+        android:layout_marginTop="@dimen/margin_edge"
         tools:ignore="RtlCompat" />
 
     <LinearLayout

@@ -45,6 +45,16 @@ public class Target extends RealmObject  implements Serializable {
     return mTime;
   }
 
+  @Override
+  public String toString() {
+    return "Target{" +
+            "id=" + id +
+            ", mTime='" + mTime + '\'' +
+            ", mContent='" + mContent + '\'' +
+            ", mFinished=" + mFinished +
+            '}';
+  }
+
   public void setTime(String time) {
     mTime = time;
   }

@@ -1,40 +1,30 @@
 package com.example.bottombartest.fragments.index;
 
 import android.graphics.Rect;
- import android.os.Bundle;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottombartest.R;
-import com.example.bottombartest.activities.RecordActivity;
 import com.example.bottombartest.adapter.WeatherAdapter;
 import com.example.bottombartest.entity.LooperItem;
 import com.example.bottombartest.entity.Weather;
-import com.example.bottombartest.interfaces.UserService;
 import com.example.bottombartest.interfaces.WeatherRequest;
-import com.example.bottombartest.utils.MyConstants;
 import com.example.bottombartest.utils.UIHelper;
 import com.example.bottombartest.view.LooperView;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -74,10 +64,9 @@ public class IndexFragment extends Fragment {
 
   private void initTestData() {
     mData = new ArrayList<>();
-    mData.add(new LooperItem(R.mipmap.logo,"图片1的标题"));
-    mData.add(new LooperItem(R.mipmap.logo,"图片2的标题"));
-    mData.add(new LooperItem(R.mipmap.logo,"图片3的标题"));
-    mData.add(new LooperItem(R.mipmap.logo,"图片4的标题"));
+    mData.add(new LooperItem(R.mipmap.mini,""));
+    mData.add(new LooperItem(R.drawable.a,""));
+    mData.add(new LooperItem(R.drawable.run,""));
   }
 
   private void initView(){

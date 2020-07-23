@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -23,6 +24,7 @@ import com.example.bottombartest.adapter.TargetAdapter;
 import com.example.bottombartest.db.DataManager;
 import com.example.bottombartest.db.RealmHelper;
 import com.example.bottombartest.entity.Target;
+import com.example.bottombartest.utils.LogUtils;
 import com.example.bottombartest.utils.MyConstants;
 import com.example.bottombartest.utils.UIHelper;
 
@@ -54,10 +56,28 @@ public class TargetActivity extends AppCompatActivity {
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_target);
-    dataManager = new DataManager(new RealmHelper());
-    mTargets = dataManager.queryAllTargets();
     initView();
+    getTargets();
+    updateUI();
     initEvent();
+  }
+
+  private void getTargets() {
+    dataManager = new DataManager(new RealmHelper());
+    List<Target> targetList = dataManager.queryAllTargets();
+    if (targetList != null) {
+      mTargets.clear();
+
+      for (Target target : targetList) {
+        Target newTarget = new Target();
+        newTarget.setId(target.getId());
+        newTarget.setContent(target.getContent());
+        newTarget.setTime(target.getTime());
+        newTarget.setFinished(target.isFinished());
+        mTargets.add(newTarget);
+      }
+    }
+    updateUI();
   }
 
   private void initView() {
@@ -65,8 +85,6 @@ public class TargetActivity extends AppCompatActivity {
     mTvGoCreate.getPaint().setFlags(Paint. UNDERLINE_TEXT_FLAG);
     mRecyclerView = findViewById(R.id.target_list);
     mTargetAdapter = new TargetAdapter();
-
-    updateUI();
 
     LinearLayoutManager manager = new LinearLayoutManager(TargetActivity.this);
     manager.setOrientation(RecyclerView.VERTICAL);
@@ -114,8 +132,10 @@ public class TargetActivity extends AppCompatActivity {
       String content = data.getStringExtra(TARGET);
       String time = data.getStringExtra(TIME);
       Target target = new Target(content,time);
+      LogUtils.d("xzw",target.toString());
       if (mTargets != null) {
         mTargets.add(target);
+        dataManager.insertTarget(target);
       }
       updateUI();
     } else {
@@ -130,14 +150,12 @@ public class TargetActivity extends AppCompatActivity {
   @Override
   protected void onStop() {
     super.onStop();
-    for (Target target : mTargets) {
-      dataManager.insertTarget(target);
-    }
   }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
+    Log.d(TAG, "saveTarget-->" + mTargets.size());
     mTargets.clear();
     mTargets = null;
   }

@@ -40,6 +40,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.example.bottombartest.R;
 import com.example.bottombartest.db.DataManager;
 import com.example.bottombartest.db.RealmHelper;
+import com.amap.api.maps.LocationSource.OnLocationChangedListener;
 import com.example.bottombartest.entity.PathRecord;
 import com.example.bottombartest.entity.SportMotionRecord;
 import com.example.bottombartest.sports.PathSmoothTool;
@@ -76,12 +77,6 @@ public class SportMapActivity extends AppCompatActivity implements View.OnClickL
   private TextView mTvNumber;
 
 
-  private PolylineOptions polylineOptions;
-  private Polyline mOriginPolyline;
-  private PathRecord record;
-  private DataManager dataManager = null;
-  private PathSmoothTool mpathSmoothTool = null;
-  private List<LatLng> mSportLatLngs = new ArrayList<>(0);
 
   private Dialog tipDialog = null;
 
@@ -110,10 +105,18 @@ public class SportMapActivity extends AppCompatActivity implements View.OnClickL
   private boolean mode = true;
 
   //地图中定位的类
-  private LocationSource.OnLocationChangedListener mListener = null;
+  private OnLocationChangedListener mListener = null;
   private AMapLocationClient mLocationClient;
   private AMapLocationClientOption mLocationOption;
   private final Long interval = 4000L;//定位时间间隔
+
+  private PolylineOptions polylineOptions;
+  private Polyline mOriginPolyline;
+  private PathRecord record;
+  private DataManager dataManager = null;
+  private PathSmoothTool mpathSmoothTool = null;
+  private List<LatLng> mSportLatLngs = new ArrayList<>(0);
+
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,8 +125,8 @@ public class SportMapActivity extends AppCompatActivity implements View.OnClickL
 
     initView();
     mMapView.onCreate(savedInstanceState);
-    initEvent();
     initData();
+    initEvent();
   }
 
 
@@ -306,11 +309,31 @@ public class SportMapActivity extends AppCompatActivity implements View.OnClickL
       setUpMap();
     }
 
+    initPolyline();
+
     setMode();
   }
 
-  private void startUpLocation() {
+  private void initPolyline() {
+    polylineOptions = new PolylineOptions();
+    polylineOptions.color(getResources().getColor(R.color.colorAccent));
+    polylineOptions.width(20f);
+    polylineOptions.useGradient(true);
+
+    mpathSmoothTool = new PathSmoothTool();
+    mpathSmoothTool.setIntensity(4);
   }
+
+
+  private void startUpLocation() {
+    //屏幕保持常亮
+    if (null != mMapView)
+      sportContent.setKeepScreenOn(true);
+
+    startLocation();
+  }
+
+
 
   public void setHiddenAnimation() {
     hiddenAnim1 = ValueAnimator.ofFloat(0,mTvFinish.getHeight()*2);
@@ -628,8 +651,6 @@ public class SportMapActivity extends AppCompatActivity implements View.OnClickL
     myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));// 设置圆形的填充颜色
     // 设置定位的类型为定位模式 ，定位、且将视角移动到地图中心点，定位点依照设备方向旋转，并且会跟随设备移动。
     myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATION_ROTATE);
-//        myLocationStyle.interval(interval);//设置发起定位请求的时间间隔
-//        myLocationStyle.showMyLocation(true);//设置是否显示定位小蓝点，true 显示，false不显示
     myLocationStyle.strokeWidth(1.0f);// 设置圆形的边框粗细
     aMap.setMyLocationStyle(myLocationStyle);
     aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示

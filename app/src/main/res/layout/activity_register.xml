@@ -32,7 +32,7 @@
         android:layout_height="40dp">
 
         <ImageView
-            android:src="@drawable/email"
+            android:src="@drawable/username"
             android:padding="8dp"
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
@@ -41,7 +41,6 @@
         <EditText
             android:id="@+id/reg_name_edit"
             android:background="@null"
-            android:inputType="textEmailAddress"
             android:textColorHint = "@color/colorGrey"
             android:layout_marginLeft="6dp"
             android:hint="@string/input_name"
